@@ -20,7 +20,7 @@ function GeminiChat() {
     setInput('');
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/chatbot/', {
+      const response = await axios.post('https://buildmypcbackend-6.onrender.com/chatbot/', {
         prompt: input,
       });
 

@@ -14,7 +14,7 @@ const ShoppingCart = () => {
 
   const fetchCartProducts = () => {
     axios
-      .get("http://127.0.0.1:8000/cart_product_list/")
+      .get("https://buildmypcbackend-6.onrender.com/cart_product_list/")
       .then((response) => {
         setProducts(response.data.products1);
       })
@@ -25,7 +25,7 @@ const ShoppingCart = () => {
 
   const handleRemove = (productId) => {
     axios
-      .delete(`http://127.0.0.1:8000/delete_cart_product/${productId}/`)
+      .delete(`https://buildmypcbackend-6.onrender.com/delete_cart_product/${productId}/`)
       .then(() => {
         setProducts(products1.filter((product) => product.id !== productId));
       })

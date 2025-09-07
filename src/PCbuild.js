@@ -42,7 +42,7 @@ function PCbuild(){
     
 
     useEffect(() => {
-    axios.get("http://127.0.0.1:8000/selected_product_of_PCbuild/")
+    axios.get("https://buildmypcbackend-6.onrender.com/selected_product_of_PCbuild/")
         .then((response) => {
             const productList = response.data.selected_products;
             setProducts(productList);
@@ -63,7 +63,7 @@ function PCbuild(){
 
     const handleRemove = (productId) => {
   axios
-    .delete(`http://127.0.0.1:8000/remove_selected_product/${productId}/`)
+    .delete(`https://buildmypcbackend-6.onrender.com/remove_selected_product/${productId}/`)
     .then((response) => {
       if (response.data.success) {
         setProducts(prev => prev.filter(p => p.id !== productId));
@@ -85,7 +85,7 @@ function PCbuild(){
     
     const handleSend = async (action) => {
   try {
-    const res = await axios.post("http://127.0.0.1:8000/Add_Cart/", {
+    const res = await axios.post("https://buildmypcbackend-6.onrender.com/Add_Cart/", {
       status_msg: action,
     });
     setCartStatus(res.data.message);     // Show status message           // Show toast
