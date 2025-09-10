@@ -18,19 +18,6 @@ function PCbuild(){
     const [cart_status, setCartStatus] = useState("");
 
 
-    const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-    const response = await axios.post("/api/get_pc_build/", {
-            budget,
-            usage,
-            preferences,
-    });
-        setResult(response.data.result);
-    } catch (error) {
-            setResult("Error generating PC build.");
-        }
-    };
 
   ///---------------
 
@@ -42,9 +29,9 @@ function PCbuild(){
     
 
     useEffect(() => {
-    axios.get("https://buildmypcbackend-6.onrender.com/selected_product_of_PCbuild/")
+    axios.get("http://localhost:4000/getSelectedproducts/")
         .then((response) => {
-            const productList = response.data.selected_products;
+            const productList = response.data;
             setProducts(productList);
 
             const total = productList.reduce((sum, product) => {
@@ -61,14 +48,14 @@ function PCbuild(){
 }, []);
 
 
-    const handleRemove = (productId) => {
+    const handleRemove = (productType) => {
   axios
-    .delete(`https://buildmypcbackend-6.onrender.com/remove_selected_product/${productId}/`)
+    .delete("http://localhost:4000/removeSelectedItem/",{data: { type: productType }})
     .then((response) => {
-      if (response.data.success) {
-        setProducts(prev => prev.filter(p => p.id !== productId));
+      if (response.data) {
+        setProducts(prev => prev.filter(p => p.type !== productType));
         setTotalPrice(prev => {
-          const removedProduct = products.find(p => p.id === productId);
+          const removedProduct = products.find(p => p.type === productType);
           const price = parseFloat(String(removedProduct.original_price).replace(/[₹,]/g, '')) || 0;
           return prev - price;
         });
@@ -85,15 +72,15 @@ function PCbuild(){
     
     const handleSend = async (action) => {
   try {
-    const res = await axios.post("https://buildmypcbackend-6.onrender.com/Add_Cart/", {
+    const res = await axios.post("http://localhost:4000/addToCart/", {
       status_msg: action,
     });
-    setCartStatus(res.data.message);     // Show status message           // Show toast
+    setCartStatus(res.data);   // Show status message           // Show toast
 
     // Wait a bit before refreshing (optional: gives time to show toast)
-    setTimeout(() => {
-      window.location.reload();          // Refresh the page
-    }, 1000); // 1 second delay before reload
+    
+    window.location.reload();          // Refresh the page
+    
 
   } catch (err) {
     setCartStatus("Something went wrong.");
@@ -142,7 +129,7 @@ function PCbuild(){
                                 <button className="content-button">Select</button>
                             </Link>
                             {products.filter(p => p.type === "Processor").map((product, index) => (
-                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.id)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
+                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.type)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
                     </div>
 
                     <br></br>
@@ -164,7 +151,7 @@ function PCbuild(){
                                 <button className="content-button">Select</button>
                             </Link>
                             {products.filter(p => p.type === "Motherboard").map((product, index) => (
-                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.id)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
+                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.type)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
                     </div>
                     
                     <br></br>
@@ -185,7 +172,7 @@ function PCbuild(){
                                 <button className="content-button">Select</button>
                             </Link>
                             {products.filter(p => p.type === "MEMORY / RAM").map((product, index) => (
-                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.id)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
+                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.type)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
                             
                     </div>
                     
@@ -208,7 +195,7 @@ function PCbuild(){
                                 <button className="content-button">Select</button>
                             </Link>
                             {products.filter(p => p.type === "SSD").map((product, index) => (
-                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.id)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
+                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.type)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
                     </div>
                     
                     <br></br>
@@ -230,7 +217,7 @@ function PCbuild(){
                                 <button className="content-button">Select</button>
                             </Link>
                             {products.filter(p => p.type === "SSD").map((product, index) => (
-                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.id)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
+                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.type)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
                     </div>
                     <br></br>
 
@@ -251,7 +238,7 @@ function PCbuild(){
                                 <button className="content-button">Select</button>
                             </Link>
                             {products.filter(p => p.type === "PC Cabinets").map((product, index) => (
-                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.id)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
+                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.type)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
                     </div>
                     
                     <br></br>
@@ -273,7 +260,7 @@ function PCbuild(){
                                 <button className="content-button">Select</button>
                             </Link>
                             {products.filter(p => p.type === "Cabinet Fan").map((product, index) => (
-                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.id)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
+                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.type)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
                     </div>
 
                     
@@ -296,7 +283,7 @@ function PCbuild(){
                                 <button className="content-button">Select</button>
                             </Link>
                             {products.filter(p => p.type === "CPU Cooler").map((product, index) => (
-                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.id)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
+                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.type)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
                     </div>
 
                     
@@ -319,7 +306,7 @@ function PCbuild(){
                                 <button className="content-button">Select</button>
                             </Link>
                             {products.filter(p => p.type === "Graphics Card").map((product, index) => (
-                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.id)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
+                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.type)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
                     </div>
 
                     <br></br>
@@ -341,7 +328,7 @@ function PCbuild(){
                                 <button className="content-button">Select</button>
                             </Link>
                             {products.filter(p => p.type === "Power Supply").map((product, index) => (
-                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.id)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
+                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.type)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
                     </div>
                    
                     <br></br>
@@ -362,7 +349,7 @@ function PCbuild(){
                                 <button className="content-button">Select</button>
                             </Link>
                             {products.filter(p => p.type === "Monitor").map((product, index) => (
-                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.id)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
+                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.type)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
                     </div>
                     
                     <br></br>
@@ -384,7 +371,7 @@ function PCbuild(){
                                 <button className="content-button">Select</button>
                             </Link>
                             {products.filter(p => p.type === "Keyboard").map((product, index) => (
-                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.id)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
+                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.type)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
                     </div>
                     
                     <br></br>
@@ -406,7 +393,7 @@ function PCbuild(){
                                 <button className="content-button">Select</button>
                             </Link>
                             {products.filter(p => p.type === "Mouse").map((product, index) => (
-                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.id)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
+                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.type)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
                     </div>
                     
                     <br></br>
@@ -428,7 +415,7 @@ function PCbuild(){
                                 <button className="content-button">Select</button>
                             </Link>
                             {products.filter(p => p.type === "Accessories").map((product, index) => (
-                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.id)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
+                            <button  className="content-button" key={`remove-${index}`} onClick={() => handleRemove(product.type)}  style={{ marginLeft: '10px', backgroundColor: 'black', color: 'white' }} >Remove</button>))}
                     </div>
                     <br></br>
                 </div>

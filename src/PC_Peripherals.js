@@ -18,9 +18,9 @@ function PC_Peripherals() {
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-  axios.get("https://buildmypcbackend-6.onrender.com/api/products/")
+  axios.get("http://localhost:4000/products/")
     .then((response) => {
-      const fetchedProducts = response.data.products;
+      const fetchedProducts = response.data;
       console.log("Fetched Products:", fetchedProducts); // ADD THIS
       setProducts(fetchedProducts);
       setFilteredProducts(fetchedProducts);
@@ -34,7 +34,7 @@ function PC_Peripherals() {
 
       function handleCart(product) {
             navigate("/Shoping_cart", { state: { url: product.image_url ,title:product.title,type:product.type,price:product.original_price } });
-            axios.post("https://buildmypcbackend-6.onrender.com/add_to_cart/", {
+            axios.post("http://localhost:4000/addCart/", {
                 title: product.title,
                 image_url: product.image_url,
                 brand:product.brand,
@@ -89,18 +89,34 @@ function PC_Peripherals() {
         <div className="mainpage">
           
           {filteredProducts
-  .filter(p => 
-    (typer === "" || p.type === typer) &&
-    (parseFloat(p.original_price.replace(/[^0-9.]/g, "")) <= parseFloat(maxPrice)) &&
-    (p.title.toLowerCase().includes(searchTerm.toLowerCase())) // 🔹 Search filter
-  )
+  .filter(p => {
+    const price = p.original_price || p.discounted_price || "0";  // 👈 fallback
+    const numericPrice = parseFloat(price.replace(/[^0-9.]/g, "")) || 0; // clean "₹" etc.
+
+    return (
+      (typer === "" || p.type === typer) &&
+      numericPrice <= maxPrice &&
+      (p.title?.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+  })
   .map((product) => (
-    <div key={product.id} className="PC_Components_Select_items">
-      <img className="PC_Components_Select_items_images" src={product.image_url} alt="" />
+    <div key={product._id || product.id} className="PC_Components_Select_items">
+      <img
+        className="PC_Components_Select_items_images"
+        src={product.image_url}
+        alt={product.title}
+      />
       <p className="PC_Components_Select_items_title">{product.title}</p>
       <div className="PC_Components_Select_items_inner">
-        <p style={{color:"red",fontSize:"20px"}}>{product.original_price}</p>
-        <button onClick={() => handleCart(product)}  className="add_to_cart">Add to Cart</button>
+        <p style={{ color: "red", fontSize: "20px" }}>
+          {product.original_price || product.discounted_price || "N/A"}
+        </p>
+        <button
+          onClick={() => handleCart(product)}
+          className="add_to_cart"
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   ))}

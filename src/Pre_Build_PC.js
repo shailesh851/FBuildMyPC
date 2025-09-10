@@ -19,9 +19,9 @@ function PC_Components() {
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-  axios.get("https://buildmypcbackend-6.onrender.com/api/products/")
+  axios.get("http://localhost:4000/products/")
     .then((response) => {
-      const fetchedProducts = response.data.products;
+      const fetchedProducts = response.data;
       console.log("Fetched Products:", fetchedProducts); // ADD THIS
       setProducts(fetchedProducts);
       setFilteredProducts(fetchedProducts);
@@ -35,7 +35,7 @@ function PC_Components() {
 
       function handleCart(product) {
             navigate("/Shoping_cart", { state: { url: product.image_url ,title:product.title,type:product.type,price:product.original_price } });
-            axios.post("https://buildmypcbackend-6.onrender.com/add_to_cart/", {
+            axios.post("http://localhost:4000/addCart/", {
                 title: product.title,
                 image_url: product.image_url,
                 brand:product.brand,

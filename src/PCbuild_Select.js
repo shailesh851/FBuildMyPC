@@ -15,9 +15,9 @@ function PCbuild_Select() {
     const [searchTerm, setSearchTerm] = useState("");
 
      useEffect(() => {
-        axios.get("https://buildmypcbackend-6.onrender.com/api/products/")
+        axios.get("http://localhost:4000/products/")
         .then((response) => {
-        const filteredProducts = response.data.products.filter(
+        const filteredProducts = response.data.filter(
           (item) => item.type === category);
         setProducts(filteredProducts);
         })
@@ -30,7 +30,7 @@ function PCbuild_Select() {
 
         function handlePick(product) {
             navigate("/", { state: { url: product.image_url ,title:product.title,type:product.type,price:product.original_price } });
-            axios.post("https://buildmypcbackend-6.onrender.com/api/selected-parts/", {
+            axios.post("http://localhost:4000/productSelected/", {
                 title: product.title,
                 image_url: product.image_url,
                 brand:product.brand,

@@ -15,9 +15,9 @@ function PC_Components() {
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-    axios.get("https://buildmypcbackend-6.onrender.com/api/products/")
+    axios.get("http://localhost:4000/products/")
       .then((response) => {
-        const fetchedProducts = response.data.products;
+        const fetchedProducts = response.data;
         setProducts(fetchedProducts);
         setFilteredProducts(fetchedProducts);
       })
@@ -34,7 +34,7 @@ function PC_Components() {
       price: product.original_price 
     }});
     
-    axios.post("https://buildmypcbackend-6.onrender.com/add_to_cart/", {
+    axios.post("http://localhost:4000/addCart/", {
       title: product.title,
       image_url: product.image_url,
       brand: product.brand,
@@ -82,9 +82,9 @@ function PC_Components() {
             <option value="Processor">Processor</option>
             <option value="MEMORY / RAM">RAM</option>
             <option value="SSD">SSD</option>
-            <option value="PC Cabinet">PC Cabinet</option>
+            <option value="PC Cabinets">PC Cabinet</option>
             <option value="Cabinet Fan">Cabinet Fan</option>
-            <option value="Cooler">Cooler</option>
+            <option value="CPU Cooler">Cooler</option>
             <option value="Graphics Card">Graphics Card</option>
             <option value="Power Supply">Power Supply</option>
             <option value="Monitor">Monitor</option>
@@ -97,21 +97,37 @@ function PC_Components() {
         {/* 🔹 Products List */}
         <div className="mainpage">
           {filteredProducts
-            .filter(p => 
-              (typer === "" || p.type === typer) &&
-              (parseFloat(p.original_price.replace(/[^0-9.]/g, "")) <= parseFloat(maxPrice)) &&
-              (p.title.toLowerCase().includes(searchTerm.toLowerCase())) // 🔹 Search filter
-            )
-            .map((product) => (
-              <div key={product.id} className="PC_Components_Select_items">
-                <img className="PC_Components_Select_items_images" src={product.image_url} alt="" />
-                <p className="PC_Components_Select_items_title">{product.title}</p>
-                <div className="PC_Components_Select_items_inner">
-                  <p style={{color:"red",fontSize:"20px"}}>{product.original_price}</p>
-                  <button onClick={() => handleCart(product)} className="add_to_cart">Add to Cart</button>
-                </div>
-              </div>
-            ))}
+  .filter(p => {
+    const price = p.original_price || p.discounted_price || "0";  // 👈 fallback
+    const numericPrice = parseFloat(price.replace(/[^0-9.]/g, "")) || 0; // clean "₹" etc.
+
+    return (
+      (typer === "" || p.type === typer) &&
+      numericPrice <= maxPrice &&
+      (p.title?.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+  })
+  .map((product) => (
+    <div key={product._id || product.id} className="PC_Components_Select_items">
+      <img
+        className="PC_Components_Select_items_images"
+        src={product.image_url}
+        alt={product.title}
+      />
+      <p className="PC_Components_Select_items_title">{product.title}</p>
+      <div className="PC_Components_Select_items_inner">
+        <p style={{ color: "red", fontSize: "20px" }}>
+          {product.original_price || product.discounted_price || "N/A"}
+        </p>
+        <button
+          onClick={() => handleCart(product)}
+          className="add_to_cart"
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  ))}
         </div>
       </div>
     </>

@@ -14,30 +14,32 @@ const ShoppingCart = () => {
 
   const fetchCartProducts = () => {
     axios
-      .get("https://buildmypcbackend-6.onrender.com/cart_product_list/")
+      .get("http://localhost:4000/getCartproducts/")
       .then((response) => {
-        setProducts(response.data.products1);
+        setProducts(response.data);
       })
       .catch((error) => {
         console.error("Error fetching products:", error);
       });
   };
 
-  const handleRemove = (productId) => {
-    axios
-      .delete(`https://buildmypcbackend-6.onrender.com/delete_cart_product/${productId}/`)
-      .then(() => {
-        setProducts(products1.filter((product) => product.id !== productId));
-      })
-      .catch((error) => {
-        console.error("Error deleting product:", error);
-      });
-  };
+const handleRemove = (productId) => {
+  axios
+    .delete("http://localhost:4000/removeCart", { data: { _id: productId } })
+    .then(() => {
+      setProducts(products1.filter((product) => product._id !== productId));
+    })
+    .catch((error) => {
+      console.error("Error deleting product:", error);
+    });
+};
 
-  const subtotal = products1.reduce(
-    (acc, item) => acc + parseFloat(item.original_price.replace(/[^0-9.]/g, "")),
-    0
-  );
+
+  const subtotal = products1.reduce((acc, item) => {
+  const price = parseFloat(item.original_price?.replace(/[^0-9.]/g, "")) || 0;
+  return acc + price;
+}, 0);
+
 
   const totalItems = products1.length;
   const total = subtotal + shippingCharge;
@@ -58,7 +60,7 @@ const ShoppingCart = () => {
             </thead>
             <tbody>
               {products1.map((product) => (
-                <tr key={product.id}>
+                <tr key={product._id}>
                   <td>
                     <img
                       className="Select_items_images1"
@@ -73,7 +75,7 @@ const ShoppingCart = () => {
                     <p style={{color:"orange",fontSize:"20px",fontWeight:"bold"}}>{product.original_price}</p>
                   </td>
                   <td>
-                    <button onClick={() => handleRemove(product.id)}>
+                    <button onClick={() => handleRemove(product._id)}>
                       Remove
                     </button>
                   </td>
