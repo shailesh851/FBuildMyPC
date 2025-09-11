@@ -64,7 +64,7 @@ function PCbuild(){
       }
     })
     .catch((error) => {
-      console.error("Error removing product:", error);
+      console.error("Errorr removing product:", error);
     });
 };
 
