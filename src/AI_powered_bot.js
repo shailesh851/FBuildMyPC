@@ -20,11 +20,11 @@ function GeminiChat() {
     setInput('');
 
     try {
-      const response = await axios.post('', {
+      const response = await axios.post('https://bbuildmypc.onrender.com/chat/', {
         prompt: input,
       });
 
-      const botMessage = { sender: 'gemini', text: response.data.reply };
+      const botMessage = { sender: 'gemini', text: response.data };
       setMessages(prev => [...prev, botMessage]); // show bot reply
     } catch (error) {
       console.error('Error sending message:', error);
