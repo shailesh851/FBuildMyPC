@@ -13,7 +13,7 @@ function PC_Peripherals() {
   const [typer, setTyper] = useState("");
   const [searchTerm, setSearchTerm] = useState("");   // 🔹 NEW state
   const navigate = useNavigate();
-
+const [loading, setLoading] = useState(true);
   // Use a state to hold the products that will be rendered after filtering
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -24,8 +24,11 @@ function PC_Peripherals() {
       console.log("Fetched Products:", fetchedProducts); // ADD THIS
       setProducts(fetchedProducts);
       setFilteredProducts(fetchedProducts);
+      setLoading(false);
     })
+
     .catch((error) => {
+      setLoading(false);
       console.error("Error fetching products:", error);
     });
 }, []);
@@ -49,6 +52,23 @@ function PC_Peripherals() {
                 console.error("Failed to send data:", error);
             });
         }
+
+  if (loading) {
+    return (
+      <div style={{ textAlign: "center", marginTop: "50px" }}>
+        <div style={{
+          border: "6px solid #f3f3f3",
+          borderTop: "6px solid #4a2ff7",
+          borderRadius: "50%",
+          width: "40px",
+          height: "40px",
+          margin: "0 auto 10px",
+          animation: "spin 1s linear infinite"
+        }} />
+        <p>Loading products...</p>
+      </div>
+    );
+  }
 
   return (
     <>

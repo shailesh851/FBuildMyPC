@@ -13,6 +13,7 @@ function PCbuild_Select() {
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState("");
+    const [loading, setLoading] = useState(true);
 
      useEffect(() => {
         axios.get("https://bbuildmypc.onrender.com/products/")
@@ -20,9 +21,11 @@ function PCbuild_Select() {
         const filteredProducts = response.data.filter(
           (item) => item.type === category);
         setProducts(filteredProducts);
+        setLoading(false);
         })
         .catch((error) => {
         console.error("Error fetching products:", error);
+        setLoading(false);
       });
   }, []);
 
@@ -45,6 +48,22 @@ function PCbuild_Select() {
                 console.error("Failed to send data:", error);
             });
         }
+ if (loading) {
+    return (
+      <div style={{ textAlign: "center", marginTop: "50px" }}>
+        <div style={{
+          border: "6px solid #f3f3f3",
+          borderTop: "6px solid #4a2ff7",
+          borderRadius: "50%",
+          width: "40px",
+          height: "40px",
+          margin: "0 auto 10px",
+          animation: "spin 1s linear infinite"
+        }} />
+        <p>Loading products...</p>
+      </div>
+    );
+  }
 
         return(
             <>

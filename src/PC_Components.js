@@ -14,17 +14,20 @@ function PC_Components() {
 
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  useEffect(() => {
-    axios.get("https://bbuildmypc.onrender.com/products/")
-      .then((response) => {
-        const fetchedProducts = response.data;
-        setProducts(fetchedProducts);
-        setFilteredProducts(fetchedProducts);
-      })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-      });
-  }, []);
+const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+  axios.get("https://bbuildmypc.onrender.com/products")
+    .then((response) => {
+      setProducts(response.data);
+      setFilteredProducts(response.data);
+      setLoading(false); // done loading
+    })
+    .catch((error) => {
+      console.error("Error fetching products:", error);
+      setLoading(false); // even on error
+    });
+}, []);
 
   function handleCart(product) {
     navigate("/Shoping_cart", { state: { 
@@ -50,9 +53,28 @@ function PC_Components() {
     });
   }
 
+  if (loading) {
+    return (
+      <div style={{ textAlign: "center", marginTop: "50px" }}>
+        <div style={{
+          border: "6px solid #f3f3f3",
+          borderTop: "6px solid #4a2ff7",
+          borderRadius: "50%",
+          width: "40px",
+          height: "40px",
+          margin: "0 auto 10px",
+          animation: "spin 1s linear infinite"
+        }} />
+        <p>Loading products...</p>
+      </div>
+    );
+  }
+
   return (
     <>
       <div style={{backgroundColor:"black",height:"60px",width:"100%",fontSize:"30px",color:"white",textAlign:"center",fontWeight:"bold"}}>Components</div>
+  
+      
       <input
             type="text"
             placeholder="Search by title..."
