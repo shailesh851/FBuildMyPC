@@ -10,8 +10,12 @@ const ShoppingCart = () => {
 
   useEffect(() => {
     fetchCartProducts();
-  }, []);
+  }, [products1]);
 
+
+  useEffect(()=>{
+
+  },[])
   const fetchCartProducts = () => {
     axios
       .get("https://bbuildmypc.onrender.com/getCartproducts/")
