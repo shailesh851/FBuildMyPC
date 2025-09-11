@@ -45,7 +45,7 @@ function PCbuild(){
         .catch((error) => {
             console.error("Error fetching products:", error);
         });
-}, []);
+}, [products]);
 
 
     const handleRemove = (productType) => {
