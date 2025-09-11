@@ -25,6 +25,8 @@ function GeminiChat() {
       });
 
       const botMessage = { sender: 'gemini', text: response.data };
+      console.log(botMessage.text)
+      console.log("botMessage.text")
       setMessages(prev => [...prev, botMessage]); // show bot reply
     } catch (error) {
       console.error('Error sending message:', error);
