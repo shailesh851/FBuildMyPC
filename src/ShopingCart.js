@@ -14,7 +14,7 @@ const ShoppingCart = () => {
 
   const fetchCartProducts = () => {
     axios
-      .get("http://localhost:4000/getCartproducts/")
+      .get("https://bbuildmypc.onrender.com/getCartproducts/")
       .then((response) => {
         setProducts(response.data);
       })
@@ -25,7 +25,7 @@ const ShoppingCart = () => {
 
 const handleRemove = (productId) => {
   axios
-    .delete("http://localhost:4000/removeCart", { data: { _id: productId } })
+    .delete("https://bbuildmypc.onrender.com/removeCart", { data: { _id: productId } })
     .then(() => {
       setProducts(products1.filter((product) => product._id !== productId));
     })

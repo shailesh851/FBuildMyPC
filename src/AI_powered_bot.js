@@ -7,7 +7,7 @@ function GeminiChat() {
 
   // Load chat history from backend
   useEffect(() => {
-    axios.get('http://localhost:8000/api/chat-history/')
+    axios.get('')
       .then(res => setMessages(res.data))
       .catch(err => console.error('Failed to load history', err));
   }, []);
@@ -20,7 +20,7 @@ function GeminiChat() {
     setInput('');
 
     try {
-      const response = await axios.post('https://buildmypcbackend-6.onrender.com/chatbot/', {
+      const response = await axios.post('', {
         prompt: input,
       });
 
