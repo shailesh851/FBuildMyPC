@@ -12,26 +12,25 @@ function GeminiChat() {
       .catch(err => console.error('Failed to load history', err));
   }, []);
 
-  const handleSend = async () => {
-    if (!input.trim()) return;
+const handleSend = async () => {
+  if (!input.trim()) return;
 
-    const userMessage = { sender: 'user', text: input };
-    setMessages(prev => [...prev, userMessage]); // show user message
-    setInput('');
+  const userMessage = { sender: 'user', text: input };
+  const updatedMessages = [...messages, userMessage]; // include new message
+  setMessages(updatedMessages); // show immediately
+  setInput('');
 
-    try {
-      const response = await axios.post('https://bbuildmypc.onrender.com/chat/', {
-        prompt: input,
-      });
+  try {
+    const response = await axios.post('https://bbuildmypc.onrender.com/chat/', {
+      conversation: updatedMessages // send full conversation
+    });
 
-      const botMessage = { sender: 'gemini', text: response.data };
-      console.log(botMessage.text)
-      console.log("botMessage.text")
-      setMessages(prev => [...prev, botMessage]); // show bot reply
-    } catch (error) {
-      console.error('Error sending message:', error);
-    }
-  };
+    const botMessage = { sender: 'gemini', text: response.data.reply };
+    setMessages(prev => [...prev, botMessage]);
+  } catch (error) {
+    console.error('Error sending message:', error);
+  }
+};
 
   return (
     <>

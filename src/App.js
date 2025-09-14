@@ -11,6 +11,8 @@ import PC_Components from "./PC_Components"
 import AI_powered_bot from "./AI_powered_bot"
 import ShoppingCart from "./ShopingCart";
 import PC_Peripherals from "./PC_Peripherals";
+import SignUp from "./SignUp";
+import Login from "./Login";
 function App() {
   return (
   
@@ -24,6 +26,8 @@ function App() {
         <Route path="/chatbot" element={<AI_powered_bot/>} />
         <Route path="/Shoping_cart" element={<ShoppingCart/>} />
         <Route path="/Peripherals" element={<PC_Peripherals/>} />
+        <Route path="/signup" element={<SignUp/>} />
+        <Route path="/login" element={<Login/>} />
       </Routes>
     </Router>
   
