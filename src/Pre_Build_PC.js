@@ -72,7 +72,7 @@ const [loading, setLoading] = useState(true);
 
   return (
     <>
-    <div style={{backgroundColor:"black",height:"60px",width:"100%",fontSize:"30px",color:"white",textAlign:"center",fontWeight:"bold"}}>Pre-Build PC</div>
+    <div style={{backgroundColor:"black",height:"30px",width:"100%",fontSize:"30px",color:"white",textAlign:"center",fontWeight:"bold"}}></div>
     <input 
       type="text"
       placeholder="Search by title..."
@@ -96,7 +96,7 @@ const [loading, setLoading] = useState(true);
             />
           </div>
           <select disabled onChange={(e) => setTyper(e.target.value)} name="branch" className="border p-2 rounded">
-            <option value="">Select Branch</option>
+            <option value="">Disabled</option>
             <option value="Processor">Processor</option>
             <option value="MEMORY / RAM">RAM</option>
             <option value="SSD">SSD</option>

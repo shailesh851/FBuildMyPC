@@ -72,7 +72,8 @@ useEffect(() => {
 
   return (
     <>
-      <div style={{backgroundColor:"black",height:"60px",width:"100%",fontSize:"30px",color:"white",textAlign:"center",fontWeight:"bold"}}>Components</div>
+      <div style={{backgroundColor:"black",height:"30px",width:"100%",fontSize:"30px",color:"white",textAlign:"center",fontWeight:"bold"}}></div>
+      
   
       
       <input 

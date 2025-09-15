@@ -72,7 +72,7 @@ const [loading, setLoading] = useState(true);
 
   return (
     <>
-    <div style={{backgroundColor:"black",height:"60px",width:"100%",fontSize:"30px",color:"white",textAlign:"center",fontWeight:"bold"}}>Peripherals</div>
+   <div style={{backgroundColor:"black",height:"30px",width:"100%",fontSize:"30px",color:"white",textAlign:"center",fontWeight:"bold"}}></div>
     <input
             type="text"
             placeholder="Search by title..."

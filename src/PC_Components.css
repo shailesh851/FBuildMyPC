@@ -177,7 +177,7 @@ html, body {
       display: flex;
       gap: 15px;
       background-color: #e2e1e1;
-      margin-top: 20px;
+      margin-top: 80px;
       width: 105%;
       padding: 15px;
       margin-left: 0;
@@ -206,10 +206,10 @@ html, body {
 }
 .Filtering {
     background-color: #ffffff;
-    height: 60px;
+    height: 65px;
     width: 89%;
     position: absolute;
-    top: 153px;
+    top: 125px;
     left:0px;
     display: flex;
 }
