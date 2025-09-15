@@ -51,3 +51,9 @@
   font-size: 12px;
   margin-top: 4px;
 }
+
+@media only screen and (max-width:768px) {
+  .auth-box{
+    margin-top: -100px;
+  }
+}

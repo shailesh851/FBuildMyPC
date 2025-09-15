@@ -1,120 +1,72 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
+import './Al_powered_bot.css';
 
 function GeminiChat() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
+  const chatEndRef = useRef(null);
 
   // Load chat history from backend
   useEffect(() => {
-    axios.get('')
+    axios.get("https://bbuildmypc.onrender.com/chat/history")
       .then(res => setMessages(res.data))
       .catch(err => console.error('Failed to load history', err));
   }, []);
 
-const handleSend = async () => {
-  if (!input.trim()) return;
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
-  const userMessage = { sender: 'user', text: input };
-  const updatedMessages = [...messages, userMessage]; // include new message
-  setMessages(updatedMessages); // show immediately
-  setInput('');
+  const handleSend = async () => {
+    if (!input.trim()) return;
 
-  try {
-    const response = await axios.post('https://bbuildmypc.onrender.com/chat/', {
-      conversation: updatedMessages // send full conversation
-    });
+    const userMessage = { sender: 'user', text: input };
+    const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
+    setInput('');
 
-    const botMessage = { sender: 'gemini', text: response.data.reply };
-    setMessages(prev => [...prev, botMessage]);
-  } catch (error) {
-    console.error('Error sending message:', error);
-  }
-};
+    try {
+      const response = await axios.post('https://bbuildmypc.onrender.com/chat/', {
+        conversation: updatedMessages
+      });
+
+      const botMessage = { sender: 'gemini', text: response.data.reply };
+      setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      console.error('Error sending message:', error);
+    }
+  };
 
   return (
     <>
-    <div style={{backgroundColor:"black",height:"60px",width:"100%",fontSize:"30px",color:"white",textAlign:"center",fontWeight:"bold"}}>chatbot</div>
-    <div style={{
-      minHeight: "auto",
-      width:"auto",
-      backgroundColor: '#e5ddd5',
-      display: 'flex',
-      justifyContent: 'center',
-      padding: '20px',
-    }}>
-      <div style={{
-        backgroundColor: 'white',
-        width: '100%',
-        maxWidth: '600px',
-        height: '80vh',
-        borderRadius: '10px',
-        display: 'flex',
-        flexDirection: 'column',
-        boxShadow: '0 0 10px rgba(0,0,0,0.1)',
-      }}>
-        {/* Chat area */}
-        <div style={{
-          flex: 1,
-          overflowY: 'auto',
-          padding: '15px',
-        }}>
-          {messages.map((msg, index) => (
-            <div key={index} style={{
-              display: 'flex',
-              justifyContent: msg.sender === 'user' ? 'flex-end' : 'flex-start',
-              marginBottom: '10px',
-            }}>
-              <div style={{
-                backgroundColor: msg.sender === 'gemini' ? '#dcf8c6' : '#f0f0f0',
-                color: 'black',
-                padding: '10px 15px',
-                borderRadius: '15px',
-                maxWidth: '70%',
-              }}>
-                {msg.text}
+      <div className="chat-header">chatbot</div>
+      <div className="chat-container">
+        <div className="chat-box">
+          {/* Chat area */}
+          <div className="chat-messages">
+            {messages.map((msg, index) => (
+              <div key={index} className={`chat-message ${msg.sender}`}>
+                <div className="chat-bubble">{msg.text}</div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+            <div ref={chatEndRef} />
+          </div>
 
-        {/* Input area */}
-        <div style={{
-          display: 'flex',
-          padding: '10px',
-          borderTop: '1px solid #ccc',
-        }}>
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-            placeholder="Type a message"
-            style={{
-              flex: 1,
-              padding: '10px',
-              borderRadius: '20px',
-              border: '1px solid #ccc',
-              outline: 'none',
-              marginRight: '10px',
-            }}
-          />
-          <button
-            onClick={handleSend}
-            style={{
-              backgroundColor: '#25d366',
-              color: 'white',
-              border: 'none',
-              padding: '10px 20px',
-              borderRadius: '20px',
-              cursor: 'pointer',
-            }}
-          >
-            Send
-          </button>
+          {/* Input area */}
+          <div className="chat-input-area">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+              placeholder="Type a message"
+              className="chat-input"
+            />
+            <button onClick={handleSend} className="send-btn">Send</button>
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 }

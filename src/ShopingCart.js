@@ -162,12 +162,12 @@ const handleRemove = (productId) => {
 
   return (
     <>
-      <div style={{backgroundColor:"black",height:"60px",width:"100%",fontSize:"30px",color:"white",textAlign:"center",fontWeight:"bold"}}>Shopping Cart</div>
-      <div className="main_div">
-        <div className="Cart_product">
+      <div style={{backgroundColor:"black",height:"30px",width:"100%",fontSize:"20px",color:"white",textAlign:"center",fontWeight:"bold"}}>Shopping Cart</div>
+      <div className="main_div1">
+        <div  className="Cart_product">
           <table className="cart_product">
             <thead>
-              <tr style={{ backgroundColor: "lightgray" }}>
+              <tr style={{backgroundColor: "lightgray" }}>
                 <th></th>
                 <th>PRODUCT</th>
                 <th>PRICE</th>
@@ -188,10 +188,10 @@ const handleRemove = (productId) => {
                     <p className="Select_items_title1">{product.title}</p>
                   </td>
                   <td>
-                    <p style={{color:"orange",fontSize:"20px",fontWeight:"bold"}}>{product.original_price}</p>
+                    <p className="select_items_price" >{product.original_price}</p>
                   </td>
                   <td>
-                    <button onClick={() => handleRemove(product._id)}>
+                    <button className="cart_remove_button" onClick={() => handleRemove(product._id)}>
                       Remove
                     </button>
                   </td>
@@ -235,7 +235,7 @@ const handleRemove = (productId) => {
                 value={formData.city}
                 onChange={handleChange}
                 placeholder="Enter your city"
-                style={{ height:"10px", width: "95%", padding: "8px", margin: "0px 0" }}
+                className="orderSummaryForm"
               />
 
               <label>State</label>
@@ -245,7 +245,7 @@ const handleRemove = (productId) => {
                 value={formData.state}
                 onChange={handleChange}
                 placeholder="Enter your state"
-                style={{height:"10px", width: "95%", padding: "8px", margin: "px 0" }}
+                className="orderSummaryForm"
               />
 
               <label>Pincode</label>
@@ -255,7 +255,7 @@ const handleRemove = (productId) => {
                 value={formData.pincode}
                 onChange={handleChange}
                 placeholder="Enter your pincode"
-                style={{height:"10px", width: "95%", padding: "8px", margin: "0px 0" }}
+                className="orderSummaryForm"
               />
 
               <label>Phone Number</label>
@@ -265,7 +265,7 @@ const handleRemove = (productId) => {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="Enter phone number"
-                style={{height:"10px", width: "95%", padding: "8px", margin: "0px 0" }}
+                className="orderSummaryForm"
               />
         
 

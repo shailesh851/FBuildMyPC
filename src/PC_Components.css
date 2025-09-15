@@ -1,11 +1,17 @@
 
-
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* prevent horizontal scroll */
+}
 
 .Outerdiv{
     height: auto;
     width: auto;
     display: flex;
     justify-content: center;
+    background-color: #d7b717;
+    
   
     
 }
@@ -15,7 +21,7 @@
   justify-content: flex-start;
   gap: 20px;
   padding: 40px;
-  background-color: #ffffff;
+  background-color: #ececec;
   width: 70%;
   margin-left:300px;
 
@@ -31,6 +37,7 @@
   align-items: center;
   padding: 16px;
   transition: transform 0.2s;
+
 }
 
 .PC_Components_Select_items:hover {
@@ -88,21 +95,7 @@
 }
 
 
-.Filtering{
-  position: fixed;
-    background-color: #ffffff;
-    width: 300px;
-    height: 500px;
-    text-align: center;
-    left: 40px;
-    
-}
 
-.Filtering select{
-    margin-top: 50px;
-    width: 250px;
-    height: 30px;
-}
 
 .search_box{
   margin-left:40px ;
@@ -111,8 +104,133 @@
   height: 25px;
 }
 
+.Filtering {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    width: 250px;
+    flex-shrink: 0;
+    position: fixed;
+    left:30px;
+    top: 220px;
+}
+
+.Filtering label {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.Filtering input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    margin-top: 8px;
+}
+
+.Filtering input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.Filtering select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 16px;
+    color: #555;
+    cursor: pointer;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.PC_Components_Select_items_inner p{
+   color: red; 
+   font-size: 20px;
+}
+
+
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@media only screen and (max-width:768px){
+  .mainpage {
+      display: flex;
+      gap: 15px;
+      background-color: #e2e1e1;
+      margin-top: 20px;
+      width: 105%;
+      padding: 15px;
+      margin-left: 0;
+
+      
+  }
+  .PC_Components_Select_items_inner p{
+   color: red; 
+   font-size: 16px;
+   margin-left: -5px;
+}
+
+  .search_box{
+    width: 300px;
+  }
+  
+
+.PC_Components_Select_items{
+  height: auto;
+  width: 140px;
+  font-size: 10px;
+  background-color: #ffffff;
+
+  
+
+}
+.Filtering {
+    background-color: #ffffff;
+    height: 60px;
+    width: 89%;
+    position: absolute;
+    top: 153px;
+    left:0px;
+    display: flex;
+}
+
+.PC_Components_Select_items_images{
+  height: 100px;
+}
+.Outerdiv{
+  width: 100%;
+  background-color: green;
+}
+
+.Filtering label {
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+    display: block;
+
+}
+
+
+
+
 }

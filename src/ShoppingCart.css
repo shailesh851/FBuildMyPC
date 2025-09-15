@@ -1,10 +1,11 @@
-.main_div{
+.main_div1{
     width:auto;
     height: auto;
-    background-color:azure;
+    background-color:rgb(255, 255, 255);
     display: flex;
     justify-content: center;
-    gap:40px;
+    padding: 0rem;
+    margin-top: 3rem;
 }
 .Cart_product{
     margin-top: 10px;
@@ -15,115 +16,31 @@
     
 }
 
-.Cart_manage{
-    margin-top: 10px;
-    width:30%;
-    height: 60%;
-    background-color: aliceblue;
-}
 
-.Select_items1{
-    height: 20px;;
-    width:100%;
-    
-    display: flex;
-    justify-content: left;
-}
 
-.Select_items_images1{
-    height: 40px;
-    width: 40px;
-}
 
-.Select_items_inner1{
-    display: flex;
-    justify-content: center;
-    position: relative;
-    left: 280px;
-}
 
-.items_pick_button1{
 
-    height: 25px;
-    margin-top: 15px;
-    margin-left: 20px;
 
-}
 
-.Select_items_title1{
-    margin-left: 20px;
-}
+
+
+
+
 /* General Page Layout */
 .Outerdiv {
     display: flex;
     font-family: Arial, sans-serif;
     background-color: #f0f2f5;
     min-height: 100vh;
-    padding: 20px;
-    gap: 20px;
+ 
 }
 
 /* Filtering Section */
-.Filtering {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: fit-content;
-    width: 250px;
-    flex-shrink: 0;
-}
-
-.Filtering label {
-    font-weight: bold;
-    color: #333;
-    display: block;
-    margin-bottom: 10px;
-}
-
-.Filtering input[type="range"] {
-    width: 100%;
-    -webkit-appearance: none;
-    appearance: none;
-    height: 8px;
-    background: #ddd;
-    border-radius: 5px;
-    outline: none;
-    margin-top: 8px;
-}
-
-.Filtering input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    background: #007bff;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.Filtering select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #fff;
-    font-size: 16px;
-    color: #555;
-    cursor: pointer;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-}
 
 
 /* Main container styling */
-.main_div {
-  padding: 2rem;
-  margin-top: 1rem;
-  background-color: #fff;
-}
+
 
 /* Heading below navbar */
 .cart-heading {
@@ -131,10 +48,11 @@
   background-color: #f3f4f6;
   padding: 1rem 0;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #333;
   margin-bottom: 2rem;
+  
 }
 
 /* Cart table */
@@ -143,6 +61,7 @@
   border-collapse: collapse;
   margin-bottom: 2rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 }
 
 /* Table headers */
@@ -233,4 +152,83 @@ button:hover {
   background-color: #2a6ae9;
   border-radius: 10px;
   margin-top: 5px;
+}
+.select_items_price{
+  color:orange;
+  font-size: 20px;
+  font-weight: bold;
+}
+.orderSummaryForm{
+  height:10px;
+  width: 95%;
+  padding: 8px;
+}
+
+@media only screen and (max-width:768px){
+  .Cart_manage{
+  background-color: rgb(248, 248, 248);
+  border-radius: 10px;
+  height: auto;
+  position: relative;
+  left: 10px;
+  
+
+}
+.main_div1{
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  
+}
+
+.Cart_product{
+    margin-top: 10px;
+    height: auto;
+
+    width: 100%;
+    
+    
+}
+.Select_items_images1{
+  height: 70px;
+  
+}
+
+.cart_product{
+  width: 100%;
+}
+.Select_items_title1{
+  font-size: 10px;
+
+}
+
+.select_items_price{
+
+  font-size: 15px;
+  font-weight: bold;
+}
+.cart_remove_button{
+  height: 30px;
+}
+
+.cart_product tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+.orderSummaryForm{
+  width: 88%;
+}
+
+.addressDiv{
+  width: 100%;
+}
+.Cart_manage{
+  width: 95%;
+}
+.cartButtons{
+  width: 90%;
+}
+  
 }

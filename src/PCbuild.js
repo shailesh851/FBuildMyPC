@@ -9,10 +9,9 @@ import axios from "axios";
 function PCbuild(){
 
     //-------------
-    const [budget, setBudget] = useState("");
-    const [usage, setUsage] = useState("");
-    const [preferences, setPreferences] = useState("");
-    const [result, setResult] = useState("");
+  
+   
+
   //-----------------
     
     const [cart_status, setCartStatus] = useState("");
@@ -99,15 +98,16 @@ function PCbuild(){
 
     return(
         <>
+        
+
         <div style={{backgroundColor:"black",height:"30px",width:"100%",fontSize:"30px",color:"white",textAlign:"center",fontWeight:"bold"}}></div>
         <div className="PCbuild-div">
             <div className="PCbuild-internal">
                 <h1>build your PC online | Customize your PC</h1>
-                <p>Welcome to Ankit Infotech – PC Studio, your trusted destination for PC builds and customization. With a rich legacy of 25 years in the computer and gaming peripheral market, we offer you the expertise and resources to create your perfect PC. Our user-friendly online platform allows you to unleash your creativity and build your own PC from the scratch starting from Processor, Motherboard, Graphics Card etc. Choose from a wide range of high-quality components, including processors, motherboards, graphics cards, and monitors. Customize every aspect of your PC build with ease, and enjoy the convenience of instant quotations. Experience the joy of personalized computing with Ankit Infotech – PC Studio, where PC building meets limitless possibilities.</p>
+                <p className="buildPCParagraph">Welcome to Ankit Infotech – PC Studio, your trusted destination for PC builds and customization. With a rich legacy of 25 years in the computer and gaming peripheral market, we offer you the expertise and resources to create your perfect PC. Our user-friendly online platform allows you to unleash your creativity and build your own PC from the scratch starting from Processor, Motherboard, Graphics Card etc. Choose from a wide range of high-quality components, including processors, motherboards, graphics cards, and monitors. Customize every aspect of your PC build with ease, and enjoy the convenience of instant quotations. Experience the joy of personalized computing with Ankit Infotech – PC Studio, where PC building meets limitless possibilities.</p>
                 <div className="content-div">
-                     
                     <div className="order_div">
-                        <h3 style={{paddingRight:"100px",fontSize:"20px"}}>Total : ₹ {totalPrice.toLocaleString()}</h3>
+                        <div className="BuildPCTotal" >Total: ₹ {totalPrice.toLocaleString()}</div>
                         <Link to="Shoping_cart/"><button onClick={()=>{handleSend("ADD")}}  className="Add_to_cart_button" >Add to cart</button></Link><br></br><br></br>
                         <button onClick={()=>{handleSend("REMOVE")}} className="Remove_all_button" >Remove all</button><br></br><br></br>
                         <div style={{color:"green"}}>{cart_status}</div>
@@ -118,7 +118,7 @@ function PCbuild(){
                                 <div key={index} className="selected_product">
                                     <img className="select_product_image" src={product.image_url} alt="img" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
-                                    <p style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>Price: {product.original_price}</p>
+                                    <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}> {product.original_price}</p>
                                 </div>
                             ))}
                             {Array.isArray(products) && products.filter(p => p.type === "Processor").length === 0 && (
@@ -140,7 +140,7 @@ function PCbuild(){
                                 <div key={index} className="selected_product">
                                     <img className="select_product_image" src={product.image_url} alt="img" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
-                                    <p style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>Price: {product.original_price}</p>
+                                    <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
                             ))}
                             {Array.isArray(products) && products.filter(p => p.type === "Motherboard").length === 0 && (
@@ -161,7 +161,7 @@ function PCbuild(){
                                 <div key={index} className="selected_product">
                                     <img className="select_product_image" src={product.image_url} alt="img" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
-                                    <p style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>Price: {product.original_price}</p>
+                                    <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
                             ))}
                             {Array.isArray(products) && products.filter(p => p.type === "MEMORY / RAM").length === 0 && (
@@ -184,7 +184,7 @@ function PCbuild(){
                                 <div key={index} className="selected_product">
                                     <img className="select_product_image" src={product.image_url} alt="img" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
-                                    <p style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>Price: {product.original_price}</p>
+                                    <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
                             ))}
                             {Array.isArray(products) && products.filter(p => p.type === "SSD").length === 0 && (
@@ -206,7 +206,7 @@ function PCbuild(){
                                 <div key={index} className="selected_product">
                                     <img className="select_product_image" src={product.image_url} alt="img" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
-                                    <p style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>Price: {product.original_price}</p>
+                                    <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
                             ))}
                             {Array.isArray(products) && products.filter(p => p.type === "SSD").length === 0 && (
@@ -227,7 +227,7 @@ function PCbuild(){
                                 <div key={index} className="selected_product">
                                     <img className="select_product_image" src={product.image_url} alt="img" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
-                                    <p style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>Price: {product.original_price}</p>
+                                    <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}> {product.original_price}</p>
                                 </div>
                             ))}
                             {Array.isArray(products) && products.filter(p => p.type === "PC Cabinets").length === 0 && (
@@ -249,7 +249,7 @@ function PCbuild(){
                                 <div key={index} className="selected_product">
                                     <img className="select_product_image" src={product.image_url} alt="img" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
-                                    <p style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>Price: {product.original_price}</p>
+                                    <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
                             ))}
                             {Array.isArray(products) && products.filter(p => p.type === "Cabinet Fan").length === 0 && (
@@ -272,7 +272,7 @@ function PCbuild(){
                                 <div key={index} className="selected_product">
                                     <img className="select_product_image" src={product.image_url} alt="img" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
-                                    <p style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>Price: {product.original_price}</p>
+                                    <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}> {product.original_price}</p>
                                 </div>
                             ))}
                             {Array.isArray(products) && products.filter(p => p.type === "CPU Cooler").length === 0 && (
@@ -295,7 +295,7 @@ function PCbuild(){
                                 <div key={index} className="selected_product">
                                     <img className="select_product_image" src={product.image_url} alt="img" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
-                                    <p style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>Price: {product.original_price}</p>
+                                    <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}> {product.original_price}</p>
                                 </div>
                             ))}
                             {Array.isArray(products) && products.filter(p => p.type === "Graphics Card").length === 0 && (
@@ -317,7 +317,7 @@ function PCbuild(){
                                 <div key={index} className="selected_product">
                                     <img className="select_product_image" src={product.image_url} alt="img" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
-                                    <p style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>Price: {product.original_price}</p>
+                                    <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
                             ))}
                             {Array.isArray(products) && products.filter(p => p.type === "Power Supply").length === 0 && (
@@ -338,7 +338,7 @@ function PCbuild(){
                                 <div key={index} className="selected_product">
                                     <img className="select_product_image" src={product.image_url} alt="img" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
-                                    <p style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>Price: {product.original_price}</p>
+                                    <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
                             ))}
                             {Array.isArray(products) && products.filter(p => p.type === "Monitor").length === 0 && (
@@ -360,7 +360,7 @@ function PCbuild(){
                                 <div key={index} className="selected_product">
                                     <img className="select_product_image" src={product.image_url} alt="img" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
-                                    <p style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>Price: {product.original_price}</p>
+                                    <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
                             ))}
                             {Array.isArray(products) && products.filter(p => p.type === "Keyboard").length === 0 && (
@@ -382,7 +382,7 @@ function PCbuild(){
                                 <div key={index} className="selected_product">
                                     <img className="select_product_image" src={product.image_url} alt="img" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
-                                    <p style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>Price: {product.original_price}</p>
+                                    <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
                             ))}
                             {Array.isArray(products) && products.filter(p => p.type === "Mouse").length === 0 && (
@@ -404,7 +404,7 @@ function PCbuild(){
                                 <div key={index} className="selected_product">
                                     <img className="select_product_image" src={product.image_url} alt="img" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
-                                    <p style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>Price: {product.original_price}</p>
+                                    <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
                             ))}
                             {Array.isArray(products) && products.filter(p => p.type === "Accessories").length === 0 && (

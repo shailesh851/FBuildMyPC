@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import LOGO from "./BuildMyPClogo.png";
 import "./navbar.css";
-import { FaShoppingCart, FaUserCircle } from "react-icons/fa"; 
+import { FaShoppingCart, FaUserCircle,FaBars } from "react-icons/fa"; 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ function Navbar() {
   const [profileData, setProfileData] = useState({});
   const [open, setOpen] = useState(false); 
   const [isLoggedIn, setIsLoggedIn] = useState(false);  // ✅ better naming
-
+  const [menuOpen,setMenuOpen]=useState(false)
 
 
   function profileDetailsDiv() {
@@ -83,18 +83,34 @@ function Navbar() {
   return (
     <div className="navbar-div">
       <img src={LOGO} className="navbar-Logo" alt="BuildMyPC Logo" />
-
+      <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
+        <FaBars size={20} />
+      </div>
+      <div>
+        {menuOpen?(
+          <div class="toggle-sidebar">
+            <ul>
+              <li ><Link to="/">PC Build</Link></li>
+              <li ><Link to="/Pre_Build_PC">Pre-Build PC</Link></li>
+              <li ><Link to="/PC_Components">PC Components</Link></li>
+              <li ><Link to="/Peripherals">PC Peripherals</Link></li>
+              <li ><Link to="/chatbot">AI Powered Bot</Link></li>
+            </ul>
+          </div>
+        
+      ):("")}
+      </div>
       <div className="main-route">
         <ul>
-          <li><Link to="/">PC Build</Link></li>
-          <li><Link to="/Pre_Build_PC">Pre-Build PC</Link></li>
-          <li><Link to="/PC_Components">PC Components</Link></li>
-          <li><Link to="/Peripherals">PC Peripherals</Link></li>
-          <li><Link to="/chatbot">AI Powered Bot</Link></li>
+          <li className="main-route-listItem"><Link to="/">PC Build</Link></li>
+          <li className="main-route-listItem"><Link to="/Pre_Build_PC">Pre-Build PC</Link></li>
+          <li className="main-route-listItem"><Link to="/PC_Components">PC Components</Link></li>
+          <li className="main-route-listItem"><Link to="/Peripherals">PC Peripherals</Link></li>
+          <li className="main-route-listItem"><Link to="/chatbot">AI Powered Bot</Link></li>
           
           <li>
             <Link to="/Shoping_cart" className="cart-link">
-              <FaShoppingCart size={20} style={{ marginRight: "5px" }} />
+              <FaShoppingCart className="huihuui" size={20} style={{ marginRight: "5px" }} />
             </Link>
           </li>
 
@@ -104,12 +120,12 @@ function Navbar() {
               // If not logged in → show signup/login
 
               <Link to="/signup" className="profileDiv">
-                <FaUserCircle size={22} />
+                <FaUserCircle  size={22} />
               </Link>
             ) : (
               // If logged in → show profile details
               <div  className="profile-link">
-                <FaUserCircle  onClick={profileDetailsDiv} size={22}  />
+                <FaUserCircle   onClick={profileDetailsDiv} size={22}  />
                 <div 
                   style={{
                     height: open ? "320px" : "0px",
@@ -142,7 +158,7 @@ function Navbar() {
 
                   <div className="UserProfileDetails">
                     
-                    <table style={{fontSize:"17px",fontWeight:"bold"}}>
+                    <table >
                       <tr>
                         <td>User :</td>
                         <td>{profileData.username}</td>
@@ -162,19 +178,7 @@ function Navbar() {
                       
                       
                     </table>
-                    <button type="button" onClick={logout} style={{
-                      marginLeft:"70px",
-                      textAlign:"center",
-                      fontSize:"17px",
-                      fontWeight:"bold",
-                      border:"2px solid red",
-                      backgroundColor:"red",
-                      width:"40%",
-                      height:"36px",
-                      borderRadius:"20px",
-                      cursor:"pointer",
-                      alignContent:"center"
-                    }}>
+                    <button class="logoutButton" type="button" onClick={logout} >
                       LogOut
                     </button>
                   </div>

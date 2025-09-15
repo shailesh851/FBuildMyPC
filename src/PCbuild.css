@@ -1,6 +1,15 @@
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* stop right side extra space */
+}
+
+
 .PCbuild-div{
     height: auto;
-    width: 100%;
+    width: auto;
     justify-content: center;
     display: flex;
 
@@ -8,7 +17,7 @@
 
 .PCbuild-internal{
     height: auto;
-    width:80%;
+    width:90%;
     background-color: rgb(245, 245, 249);
 }
 .PCbuild-internal h1{
@@ -18,7 +27,7 @@
 .content-div{
     height: auto;
     width:100%;
-    padding-right: 100px;
+
 
 }
 
@@ -158,22 +167,71 @@
   gap: 20px;
 }
 
+.BuildPCTotal{
+    
+
+    padding-right:100px;
+    font-size:20px
+    
+  }
+.BuildPCTotal{
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 21px;
+}
+
 /* 📱 Mobile Optimizations */
-@media (max-width: 768px) {
-  .pcbuild-title {
-    font-size: 200px;
+@media only screen and (max-width: 768px) {
+  .buildPCParagraph{
+    display: none;
   }
+  .content-items{
+    height: auto;
+    width:100%;
+    background-color: rgb(255, 255, 255) ;
+    border-radius: 10px;
+    border: 2px solid rgb(245, 241, 241);
+  }
+  .Remove_all_button{
+    display: none;
+  }
+  .Add_to_cart_button{
+    position: fixed;
+    bottom: 3px;
+    left:0px;
+    width: 170px;
+    background-color: rgb(69, 69, 203);
+    border: 3px solid white;
+  }
+  .BuildPCTotal{
+    
+    bottom: -17px;
+    right: 0px;
+    background-color: orange;
+    width: 120px;
+    height: 45px;
+    position: fixed;
+    align-content: center;
+    border-radius: 5px;
+    border: 3px solid white;
 
-  .pcbuild-card {
-    padding: 10px;
+    
   }
+  .content-items{
+    font-size: 15px;
 
-  .pcbuild-name {
-    font-size: 1rem;
   }
-
-  .pcbuild-price {
-    font-size: 0.9rem;
+  .select_product_image{
+    height: 70px;
   }
+  .content-button{
+    height: 40px;
+    width: 75px;
+    font-size: 15px;
+  }
+  .selectedProductsPrice{
+    position: relative;
+    top: -68px;
+    left: -20px;  }
 }
 

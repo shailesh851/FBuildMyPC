@@ -82,7 +82,7 @@ function PCbuild_Select() {
                             {products.filter((p) => p.title.toLowerCase().includes(searchTerm.toLowerCase())).map((product) => (
                                 <>
                                 <div className="PCbuild_Select_items">
-                                    <img className="PCbuild_Select_items_images" src={product.image_url} style={{border:"2px solid black",height:"180px",width:"180px"}}alt=""/>
+                                    <img className="PCbuild_Select_items_images" src={product.image_url} alt=""/>
                                     <p className="PCbuild_Select_items_title">{product.title}</p>
                                     <div className="PCbuild_Select_items_inner" >
                                         <p>{product.original_price}</p>

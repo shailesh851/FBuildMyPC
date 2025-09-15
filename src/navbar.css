@@ -45,11 +45,7 @@
 
 }
 
-.main-route ul li a:hover {
-  background-color: #1e293b; /* lighter slate on hover */
-  color: #60a5fa; /* sky blue on hover */
-  transform: translateY(-2px);
-}
+
 
 /* Optional: Animated underline effect */
 .main-route ul li a::after {
@@ -68,8 +64,9 @@
 }
 
 .main-route ul li a:focus{
-  background-color: #1e293b;
-  color: #60a5fa;
+
+  color: #4c4303;
+
 }
 
 
@@ -112,6 +109,123 @@
 .profile-link{
   height: auto;
 }
+
+.menu-icon{
+  margin-left: -15px;
+  visibility: hidden;
+}
+
+.main-route-listItem{
+
+}
+
+.UserProfileDetails{
+  font-size:17px;
+  font-weight:bold;
+}
+
+.logoutButton{
+      margin-left:70px;
+      text-align:center;
+      font-size:17px;
+      font-weight:bold;
+      border:2px solid red;
+      background-color:red;
+      width:40%;
+      height:"36px";
+      border-radius:20px;
+      cursor:pointer;
+      align-content:center
+    }
+
+
+
+@media only screen and (max-width: 768px){
+
+
+    .navbar-div{
+      height: 20px;
+      width: auto;
+      justify-content: flex-start;
+    }
+    .main-route ul li a{
+      font-size: 0px;
+
+    }
+    .navbar-Logo{
+      content-visibility: hidden;
+    }
+
+    .menu-icon{
+    visibility: visible;
+
+    }
+
+    .main-route-listItem{
+      display: none;
+    }
+
+    .main-route li{
+      
+    }
+
+    .main-route {
+      margin-left: 220px;
+      margin-top: 22px;
+      width: 200px;
+    }
+    .toggle-sidebar{
+      background-color: rgb(240, 242, 244);
+      position: fixed;
+      left: 0px;
+      top: 52px;
+      font-size: 15px;
+      width: 150px;
+      list-style: none;
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      
+      
+    }
+    .toggle-sidebar ul li{
+      list-style: none;
+      margin-bottom: 20px;
+      
+    }
+    .toggle-sidebar ul li a{
+      text-decoration: none;
+      margin-left: -27px;
+      color:#000000;
+      font-weight: 800;
+      
+      
+      
+    }
+    .toggle-sidebar ul li a:focus{
+     color:rgb(35, 46, 255);
+    
+    }
+    .profileDetails{
+      width: 200px;
+      top: 52px;
+     
+      
+      
+      
+    }
+    
+    .UserProfileDetails {
+      font-size: 15px;
+    }
+    .UserProfileDetails button {
+      font-size: 12px;
+    }
+
+  
+}
+
+
 
 
 

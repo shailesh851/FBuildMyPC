@@ -2,6 +2,7 @@
     height: auto;
     width:100%;
 
+
     
 }
 
@@ -11,7 +12,7 @@
     display: flex;
     border-radius: 10px;
     margin-left: 40px;
-        background-color: rgb(238, 238, 238);
+    background-color: rgb(238, 238, 238);
 }
 
 .PCbuild_Select_items_title{
@@ -21,7 +22,9 @@
 }
 
 .PCbuild_Select_items_images{
-    
+    border:2px solid black;
+    height:180px;
+    width:180px;
 }
 
 .PCbuild_Select_items p{
@@ -62,8 +65,66 @@
     margin-bottom: 20px;
 }
 
+@media only screen and (max-width:768px){
+    .PCbuild_Select_items{
+        width: 95%;
+        height: auto;
+        margin-bottom: 20px;
+        display: block;
+        border-radius: 10px;
+        margin-left: 10px;
 
+    }
+    .PCbuild_Select_items_images{
+            border:0px solid black;
+            height:80px;
+            width:80px;
+            display: flex;
+            float: left;
+            margin-left: 6px;
+            margin-top: 6px;
+    }
+    .PCbuild_Select_items_title{
+    font-size: 12px;
+    margin-left: 20px;  
+    
+    
+    }
+    .PCbuild_Select_items_inner{
+    height: 60px;
+    width: 250px;
+    display: flex;
+    position: relative;
+    right: -20px;
+    text-align: center;
+    }
+    .PCbuild_Select_items_inner p{
+    width:120px;
+    font-size: 17px;
+    font-weight: bold;
+    color:rgb(209, 147, 32)
+}
+.items_pick_button{
+    
+    
+    height: 40px;
+    width: 300px;
+    background-color: orange;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-radius: 10px;
+    align-items: center;
+    border: none;
+    position: relative;
+    top:10px;
 
+}
+.PCbuild_Select_items p{
+    width: 350px;
+}
+   
+}
 
 
 

@@ -75,17 +75,17 @@ useEffect(() => {
       <div style={{backgroundColor:"black",height:"60px",width:"100%",fontSize:"30px",color:"white",textAlign:"center",fontWeight:"bold"}}>Components</div>
   
       
-      <input
+      <input 
             type="text"
             placeholder="Search by title..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search_box"
           />
-      <div className="Outerdiv">
-        <div className="Filtering">
+      <div   className="Outerdiv">
+        <div  className="Filtering">
           {/* 🔹 Max Price Filter */}
-          <div style={{ padding: "20px 40px" }}>
+          <div className="filtration" style={{ padding: "20px 20px" }}>
             <label>Max Price: ₹{maxPrice}</label>
             <input
               type="range"
@@ -100,7 +100,7 @@ useEffect(() => {
 
           {/* 🔹 Type Filter */}
           <select onChange={(e) => setTyper(e.target.value)} className="border p-2 rounded">
-            <option value="">Select Branch</option>
+            <option value="">Select Brand</option>
             <option value="Processor">Processor</option>
             <option value="MEMORY / RAM">RAM</option>
             <option value="SSD">SSD</option>
@@ -117,7 +117,7 @@ useEffect(() => {
         </div>
 
         {/* 🔹 Products List */}
-        <div className="mainpage">
+        <div  className="mainpage">
           {filteredProducts
   .filter(p => {
     const price = p.original_price || p.discounted_price || "0";  // 👈 fallback
@@ -138,7 +138,7 @@ useEffect(() => {
       />
       <p className="PC_Components_Select_items_title">{product.title}</p>
       <div className="PC_Components_Select_items_inner">
-        <p style={{ color: "red", fontSize: "20px" }}>
+        <p >
           {product.original_price || product.discounted_price || "N/A"}
         </p>
         <button
