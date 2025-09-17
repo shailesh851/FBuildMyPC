@@ -70,7 +70,7 @@ const handleRemove = (productId) => {
           navigate(res.data.redirect);
         }
         else{
-          if(res.data.message==="filled"){
+          if(res.data.message==="filled "){
             setOderAddress("Update")
             setOpen(false)
           }

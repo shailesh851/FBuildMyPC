@@ -13,7 +13,7 @@ function LoginForm() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -28,9 +28,10 @@ function LoginForm() {
     try {
       const res = await axios.post("https://bbuildmypc.onrender.com/login", formData,{ withCredentials: true });
 
-      console.log("✅ Login response:", res.data);
       setMsg(res.data.message );
       if(res.data.message==="Login successful"){
+        document.cookie = `UserEmail=${formData.email}; path=/; max-age=${7 * 24 * 60 * 60}`
+        document.cookie = `UserName=${res.data.user.UserName}; path=/; max-age=${7 * 24 * 60 * 60}`
         axios.get("https://bbuildmypc.onrender.com/prepareHistory",{ withCredentials: true })
         .then(res=>{console.log("done")})
         .catch(error=>{console.log(error)})

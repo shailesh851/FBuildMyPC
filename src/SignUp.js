@@ -80,13 +80,7 @@ const handleSubmit = async (e) => {
   }
 };
 
-    useEffect(() => {
-      axios.get("https://bbuildmypc.onrender.com/get-csrf", { withCredentials: true })
-      .then(res => {
-      setFormData(prev => ({ ...prev, csrfToken: res.data.csrfToken }));
-    })
-    .catch(err => console.error("CSRF fetch error:", err));
-    }, []);
+
     
   return (
     
