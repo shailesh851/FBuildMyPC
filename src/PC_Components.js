@@ -17,7 +17,7 @@ function PC_Components() {
 const [loading, setLoading] = useState(true);
 
 useEffect(() => {
-  axios.get("https://bbuildmypc.onrender.com/products")
+  axios.get("http://localhost:4000/products")
     .then((response) => {
       setProducts(response.data);
       setFilteredProducts(response.data);
@@ -37,7 +37,7 @@ useEffect(() => {
       price: product.original_price 
     }});
     
-    axios.post("https://bbuildmypc.onrender.com/addCart/", {
+    axios.post("http://localhost:4000/addCart/", {
       title: product.title,
       image_url: product.image_url,
       brand: product.brand,
@@ -72,7 +72,6 @@ useEffect(() => {
 
   return (
     <>
-      <div style={{backgroundColor:"black",height:"30px",width:"100%",fontSize:"30px",color:"white",textAlign:"center",fontWeight:"bold"}}></div>
       
   
       

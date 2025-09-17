@@ -12,6 +12,7 @@ html, body {
     width: auto;
     justify-content: center;
     display: flex;
+    margin-top: 100px;
 
 }
 
@@ -167,17 +168,13 @@ html, body {
   gap: 20px;
 }
 
-.BuildPCTotal{
-    
 
-    padding-right:100px;
-    font-size:20px
-    
-  }
 .BuildPCTotal{
   font-weight: bold;
   margin-bottom: 20px;
   font-size: 21px;
+  padding-right:100px;
+ 
 }
 
 /* 📱 Mobile Optimizations */
@@ -199,21 +196,23 @@ html, body {
     position: fixed;
     bottom: 3px;
     left:0px;
-    width: 170px;
+    width: 50%;
     background-color: rgb(69, 69, 203);
     border: 3px solid white;
+    border-radius: 0px;
   }
   .BuildPCTotal{
     
     bottom: -17px;
     right: 0px;
     background-color: orange;
-    width: 120px;
+    width: 50%;
     height: 45px;
     position: fixed;
     align-content: center;
-    border-radius: 5px;
+    border-radius: 0px;
     border: 3px solid white;
+    padding-right:0px;
 
     
   }
@@ -232,6 +231,15 @@ html, body {
   .selectedProductsPrice{
     position: relative;
     top: -68px;
-    left: -20px;  }
+    left: -20px;  
+  }
+    .PCbuild-div{
+    height: auto;
+    width: auto;
+    justify-content: center;
+    display: flex;
+    margin-top: 75px;
+
+}
 }
 

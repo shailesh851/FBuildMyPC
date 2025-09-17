@@ -99,7 +99,7 @@ html, body {
 
 .search_box{
   margin-left:40px ;
-  margin-top: 10px;
+  margin-top: 120px;
   width: 500px;
   height: 25px;
 }
@@ -186,30 +186,32 @@ html, body {
   }
   .PC_Components_Select_items_inner p{
    color: red; 
-   font-size: 16px;
-   margin-left: -5px;
+   font-size: 15px;
+   margin-left: -10px;
+   margin-right: 5px;
 }
 
   .search_box{
     width: 300px;
+    margin-top: 80px;
   }
   
 
 .PC_Components_Select_items{
   height: auto;
   width: 140px;
+  gap:auto;
   font-size: 10px;
   background-color: #ffffff;
 
-  
-
 }
+
 .Filtering {
     background-color: #ffffff;
     height: 65px;
     width: 89%;
     position: absolute;
-    top: 125px;
+    top: 110px;
     left:0px;
     display: flex;
 }
@@ -229,7 +231,18 @@ html, body {
     display: block;
 
 }
-
+.add_to_cart {
+  background-color: #d7b717;
+  color: rgb(2, 2, 2);
+  padding: 0px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 35px;
+  width:100px;
+  font-weight: bold;
+  font-size: 13px;
+}
 
 
 

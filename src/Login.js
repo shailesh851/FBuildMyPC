@@ -11,12 +11,14 @@ function LoginForm() {
   const [msg, setMsg] = useState("");
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+      
     // ✅ Simple empty field validation
     if (!formData.email || !formData.password) {
       setMsg("⚠️ Please fill all details");
@@ -24,16 +26,16 @@ function LoginForm() {
     }
 
     try {
-      const res = await axios.post("https://bbuildmypc.onrender.com/login", formData);
+      const res = await axios.post("http://localhost:4000/login", formData,{ withCredentials: true });
 
       console.log("✅ Login response:", res.data);
       setMsg(res.data.message );
       if(res.data.message==="Login successful"){
-        axios.get("https://bbuildmypc.onrender.com/prepareHistory")
+        axios.get("http://localhost:4000/prepareHistory",{ withCredentials: true })
         .then(res=>{console.log("done")})
         .catch(error=>{console.log(error)})
 
-        navigate("/PCbuild")
+        navigate("/")
         setTimeout(() => window.location.reload(), 0);
       }
       

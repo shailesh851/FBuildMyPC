@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SignUpLogin.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -9,13 +9,35 @@ function SignupForm() {
     name: "",
     email: "",
     password: "",
+    csrfToken: "",
   });
   const [errors, setErrors] = useState({});
   const [msg, setmsg] = useState("");
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+
+
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+
+  // Cookies में value save करना
+  if (name === "name") {
+    document.cookie = `UserName=${value}`;
+  }
+  if (name === "email") {
+    document.cookie = `UserEmail=${value}`;
+  }
+
+
+  // CSRF token निकालने का helper
+
+
+  // अब सिर्फ एक बार setFormData कॉल करना है
+  setFormData({
+    ...formData,
+    [name]: value
+  });
+};
 
   const validate = () => {
     const newErrors = {};
@@ -42,15 +64,15 @@ const handleSubmit = async (e) => {
 
   if (Object.keys(validationErrors).length === 0) {
     try {
-      const res = await axios.post("https://bbuildmypc.onrender.com/signup", formData);
+      const res = await axios.post("http://localhost:4000/signup", formData, { withCredentials: true });
 
       console.log("✅ Data inserted:", res.data);
       setmsg(res.data.message);
       if(res.data.message==="Signup successful"){
-        axios.get("https://bbuildmypc.onrender.com/prepareHistory")
+        axios.get("http://localhost:4000/prepareHistory",{ withCredentials: true })
         .then(res=>{console.log("done")})
         .catch(error=>{console.log(error)})
-        navigate("/PCbuild")
+        navigate("/")
         setTimeout(() => window.location.reload(), 0);
       }
 
@@ -71,7 +93,16 @@ const handleSubmit = async (e) => {
 };
 
 
+    useEffect(() => {
+      axios.get("http://localhost:4000/get-csrf", { withCredentials: true })
+      .then(res => {
+      setFormData(prev => ({ ...prev, csrfToken: res.data.csrfToken }));
+    })
+    .catch(err => console.error("CSRF fetch error:", err));
+    }, []);
+
   return (
+    
     <div className="auth-container">
       <div className="auth-box">
         <h2>Sign Up</h2>

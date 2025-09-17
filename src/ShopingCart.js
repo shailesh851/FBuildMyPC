@@ -27,7 +27,7 @@ const ShoppingCart = () => {
 
   const fetchCartProducts = () => {
     axios
-      .get("https://bbuildmypc.onrender.com/getCartproducts/")
+      .get("http://localhost:4000/getCartproducts/")
       .then((response) => {
         setProducts(response.data);
       })
@@ -38,7 +38,7 @@ const ShoppingCart = () => {
 
 const handleRemove = (productId) => {
   axios
-    .delete("https://bbuildmypc.onrender.com/removeCart", { data: { _id: productId } })
+    .delete("http://localhost:4000/removeCart", { data: { _id: productId } })
     .then(() => {
       setProducts(products1.filter((product) => product._id !== productId));
     })
@@ -63,10 +63,10 @@ const handleRemove = (productId) => {
       setAddress("")
     },5000)
     if(orderAddress==="Proceed"){
-      axios.get("https://bbuildmypc.onrender.com/logincheck")
+      axios.get("http://localhost:4000/logincheck",{ withCredentials: true })
       .then(res=>{
         
-        if (!res.data.status && res.data.redirect) {
+        if (!res.data.status&&res.data.redirect) {
           navigate(res.data.redirect);
         }
         else{
@@ -87,7 +87,7 @@ const handleRemove = (productId) => {
   
     else if(orderAddress==="Save"||orderAddress==="Update"){
       
-        axios.post("https://bbuildmypc.onrender.com/addressSave",formData)
+        axios.post("http://localhost:4000/addressSave",formData,{ withCredentials: true })
         .then(res=>{
             setAddress(res.data.message)
             if(res.data.message==="Address saved successfully!"){

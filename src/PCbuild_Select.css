@@ -86,7 +86,8 @@
     }
     .PCbuild_Select_items_title{
     font-size: 12px;
-    margin-left: 20px;  
+    margin-left: 25px;
+
     
     
     }
@@ -102,7 +103,8 @@
     width:120px;
     font-size: 17px;
     font-weight: bold;
-    color:rgb(209, 147, 32)
+    color:rgb(209, 147, 32);
+
 }
 .items_pick_button{
     
@@ -121,7 +123,20 @@
 
 }
 .PCbuild_Select_items p{
-    width: 350px;
+    width: 340px;
+    margin-top: 10px;
+}
+.PCbuild_Select_div{
+    background-color: rgb(241, 241, 241);
+
+
+    
+}
+
+.PCbuild_Select_items{
+
+    background-color: rgb(255, 255, 255);
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
    
 }

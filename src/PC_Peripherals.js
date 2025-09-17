@@ -18,7 +18,7 @@ const [loading, setLoading] = useState(true);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-  axios.get("https://bbuildmypc.onrender.com/products/")
+  axios.get("http://localhost:4000/products/")
     .then((response) => {
       const fetchedProducts = response.data;
       console.log("Fetched Products:", fetchedProducts); // ADD THIS
@@ -37,7 +37,7 @@ const [loading, setLoading] = useState(true);
 
       function handleCart(product) {
             navigate("/Shoping_cart", { state: { url: product.image_url ,title:product.title,type:product.type,price:product.original_price } });
-            axios.post("https://bbuildmypc.onrender.com/addCart/", {
+            axios.post("http://localhost:4000/addCart/", {
                 title: product.title,
                 image_url: product.image_url,
                 brand:product.brand,
@@ -72,7 +72,6 @@ const [loading, setLoading] = useState(true);
 
   return (
     <>
-   <div style={{backgroundColor:"black",height:"30px",width:"100%",fontSize:"30px",color:"white",textAlign:"center",fontWeight:"bold"}}></div>
     <input
             type="text"
             placeholder="Search by title..."
@@ -128,7 +127,7 @@ const [loading, setLoading] = useState(true);
       />
       <p className="PC_Components_Select_items_title">{product.title}</p>
       <div className="PC_Components_Select_items_inner">
-        <p style={{ color: "red", fontSize: "20px" }}>
+        <p >
           {product.original_price || product.discounted_price || "N/A"}
         </p>
         <button

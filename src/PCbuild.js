@@ -25,10 +25,10 @@ function PCbuild(){
     const [products, setProducts] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     
-    
+
 
     useEffect(() => {
-    axios.get("https://bbuildmypc.onrender.com/getSelectedproducts/")
+    axios.get("http://localhost:4000/getSelectedproducts/")
         .then((response) => {
             const productList = response.data;
             setProducts(productList);
@@ -49,7 +49,7 @@ function PCbuild(){
 
     const handleRemove = (productType) => {
   axios
-    .delete("https://bbuildmypc.onrender.com/removeSelectedItem/",{data: { type: productType }})
+    .delete("http://localhost:4000/removeSelectedItem/",{data: { type: productType }})
     .then((response) => {
       if (response.data) {
         setProducts(prev => prev.filter(p => p.type !== productType));
@@ -71,7 +71,7 @@ function PCbuild(){
     
     const handleSend = async (action) => {
   try {
-    const res = await axios.post("https://bbuildmypc.onrender.com/addToCart/", {
+    const res = await axios.post("http://localhost:4000/addToCart/", {
       status_msg: action,
     });
     setCartStatus(res.data);   // Show status message           // Show toast
@@ -100,7 +100,6 @@ function PCbuild(){
         <>
         
 
-        <div style={{backgroundColor:"black",height:"30px",width:"100%",fontSize:"30px",color:"white",textAlign:"center",fontWeight:"bold"}}></div>
         <div className="PCbuild-div">
             <div className="PCbuild-internal">
                 <h1>build your PC online | Customize your PC</h1>
@@ -108,7 +107,7 @@ function PCbuild(){
                 <h3 style={{color:"gray",marginLeft:"15px"}}>made by - Shailesh</h3>
                 <div className="content-div">
                     <div className="order_div">
-                        <div className="BuildPCTotal" >Total: ₹ {totalPrice.toLocaleString()}</div>
+                        <div className="BuildPCTotal" >Total : ₹ {totalPrice.toLocaleString()}</div>
                         <Link to="Shoping_cart/"><button onClick={()=>{handleSend("ADD")}}  className="Add_to_cart_button" >Add to cart</button></Link><br></br><br></br>
                         <button onClick={()=>{handleSend("REMOVE")}} className="Remove_all_button" >Remove all</button><br></br><br></br>
                         <div style={{color:"green"}}>{cart_status}</div>
@@ -178,7 +177,6 @@ function PCbuild(){
                     </div>
                     
                     <br></br>
-
                     <div className="content-items">
                         <h4>Select storage 1</h4>
                             {products.filter(p => p.type === "SSD").map((product, index) => (
