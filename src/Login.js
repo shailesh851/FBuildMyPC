@@ -26,12 +26,12 @@ function LoginForm() {
     }
 
     try {
-      const res = await axios.post("http://localhost:4000/login", formData,{ withCredentials: true });
+      const res = await axios.post("https://bbuildmypc.onrender.com/login", formData,{ withCredentials: true });
 
       console.log("✅ Login response:", res.data);
       setMsg(res.data.message );
       if(res.data.message==="Login successful"){
-        axios.get("http://localhost:4000/prepareHistory",{ withCredentials: true })
+        axios.get("https://bbuildmypc.onrender.com/prepareHistory",{ withCredentials: true })
         .then(res=>{console.log("done")})
         .catch(error=>{console.log(error)})
 

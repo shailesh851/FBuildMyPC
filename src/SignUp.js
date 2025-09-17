@@ -64,12 +64,12 @@ const handleSubmit = async (e) => {
 
   if (Object.keys(validationErrors).length === 0) {
     try {
-      const res = await axios.post("http://localhost:4000/signup", formData, { withCredentials: true });
+      const res = await axios.post("https://bbuildmypc.onrender.com/signup", formData, { withCredentials: true });
 
       console.log("✅ Data inserted:", res.data);
       setmsg(res.data.message);
       if(res.data.message==="Signup successful"){
-        axios.get("http://localhost:4000/prepareHistory",{ withCredentials: true })
+        axios.get("https://bbuildmypc.onrender.com/prepareHistory",{ withCredentials: true })
         .then(res=>{console.log("done")})
         .catch(error=>{console.log(error)})
         navigate("/")
@@ -94,7 +94,7 @@ const handleSubmit = async (e) => {
 
 
     useEffect(() => {
-      axios.get("http://localhost:4000/get-csrf", { withCredentials: true })
+      axios.get("https://bbuildmypc.onrender.com/get-csrf", { withCredentials: true })
       .then(res => {
       setFormData(prev => ({ ...prev, csrfToken: res.data.csrfToken }));
     })

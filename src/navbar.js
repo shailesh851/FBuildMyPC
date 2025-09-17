@@ -29,14 +29,14 @@ function Navbar() {
     if (file) {
       const imageURL = URL.createObjectURL(file);
       setPreview(imageURL);
-      axios.post("http://localhost:4000/profileImage",imageURL)
+      axios.post("https://bbuildmypc.onrender.com/profileImage",imageURL)
       .then(res=>{console.log("done")})
       .catch(error=>{console.log(error)})
     }
   };
 
   useEffect(() => {
-    axios.get("http://localhost:4000/logincheckProfile",{ withCredentials: true })
+    axios.get("https://bbuildmypc.onrender.com/logincheckProfile",{ withCredentials: true })
       .then(res => {
         if (res.data.login === "exist") {
           setIsLoggedIn(true);   // ✅ if logged in
@@ -48,7 +48,7 @@ function Navbar() {
   }, []);
 
     useEffect(() => {
-    axios.get("http://localhost:4000/fatchProfileDetails",{ withCredentials: true })
+    axios.get("https://bbuildmypc.onrender.com/fatchProfileDetails",{ withCredentials: true })
       .then(res => {
         setProfileData({
         username: res.data.UserName,
@@ -64,11 +64,11 @@ function Navbar() {
 
 
   function logout(){
-    axios.post("http://localhost:4000/loginProductsManage",{},{ withCredentials: true })
+    axios.post("https://bbuildmypc.onrender.com/loginProductsManage",{},{ withCredentials: true })
     .then(res=>{console.log("done")})
     .catch(error=>{console.log(error)})
 
-    axios.get("http://localhost:4000/logout",{ withCredentials: true })
+    axios.get("https://bbuildmypc.onrender.com/logout",{ withCredentials: true })
       .then(res => {
         if(res.data.message==="Logout successful"){
           navigate("/")
