@@ -30,6 +30,8 @@ function LoginForm() {
 
       setMsg(res.data.message );
       if(res.data.message==="Login successful"){
+        document.cookie = `UserEmail=${formData.email}; path=/; max-age=${7 * 24 * 60 * 60}`
+        document.cookie = `UserName=${res.data.user.UserName}; path=/; max-age=${7 * 24 * 60 * 60}`
         axios.get("https://bbuildmypc.onrender.com/prepareHistory",{ withCredentials: true })
         .then(res=>{console.log("done")})
         .catch(error=>{console.log(error)})
