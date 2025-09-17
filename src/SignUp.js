@@ -8,8 +8,7 @@ function SignupForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: "",
-    csrfToken: "",
+    password: ""
   });
   const [errors, setErrors] = useState({});
   const [msg, setmsg] = useState("");
@@ -20,19 +19,8 @@ function SignupForm() {
 const handleChange = (e) => {
   const { name, value } = e.target;
 
-  // Cookies में value save करना
-  if (name === "name") {
-    document.cookie = `UserName=${value}`;
-  }
-  if (name === "email") {
-    document.cookie = `UserEmail=${value}`;
-  }
 
 
-  // CSRF token निकालने का helper
-
-
-  // अब सिर्फ एक बार setFormData कॉल करना है
   setFormData({
     ...formData,
     [name]: value
@@ -91,7 +79,6 @@ const handleSubmit = async (e) => {
     }
   }
 };
-
 
     useEffect(() => {
       axios.get("https://bbuildmypc.onrender.com/get-csrf", { withCredentials: true })
