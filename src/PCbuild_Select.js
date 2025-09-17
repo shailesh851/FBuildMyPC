@@ -50,7 +50,7 @@ function PCbuild_Select() {
         }
  if (loading) {
     return (
-      <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <div style={{ textAlign: "center", marginTop: "200px" }}>
         <div style={{
           border: "6px solid #f3f3f3",
           borderTop: "6px solid #4a2ff7",

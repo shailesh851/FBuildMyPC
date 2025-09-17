@@ -104,6 +104,7 @@ const handleSubmit = async (e) => {
   return (
     
     <div className="auth-container">
+   
       <div className="auth-box">
         <h2>Sign Up</h2>
         <form onSubmit={handleSubmit}>
@@ -130,6 +131,7 @@ const handleSubmit = async (e) => {
             />
             {errors.email && <p className="error">{errors.email}</p>}
           </div>
+
 
           <div className="input-group">
             <input

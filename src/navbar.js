@@ -29,7 +29,7 @@ function Navbar() {
     if (file) {
       const imageURL = URL.createObjectURL(file);
       setPreview(imageURL);
-      axios.post("https://bbuildmypc.onrender.com/profileImage",imageURL)
+      axios.post("https://bbuildmypc.onrender.com/profileImage",{ url: imageURL }, { withCredentials: true })
       .then(res=>{console.log("done")})
       .catch(error=>{console.log(error)})
     }
@@ -88,7 +88,7 @@ function Navbar() {
       </div>
       <div>
         {menuOpen?(
-          <div class="toggle-sidebar">
+          <div className="toggle-sidebar">
             <ul>
               <li ><Link to="/">PC Build</Link></li>
               <li ><Link to="/Pre_Build_PC">Pre-Build PC</Link></li>
@@ -178,7 +178,7 @@ function Navbar() {
                       
                       
                     </table>
-                    <button class="logoutButton" type="button" onClick={logout} >
+                    <button className="logoutButton" type="button" onClick={logout} >
                       LogOut
                     </button>
                   </div>
