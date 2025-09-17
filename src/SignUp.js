@@ -100,7 +100,7 @@ const handleSubmit = async (e) => {
     })
     .catch(err => console.error("CSRF fetch error:", err));
     }, []);
-
+    
   return (
     
     <div className="auth-container">
