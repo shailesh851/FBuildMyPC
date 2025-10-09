@@ -134,7 +134,10 @@ function Navbar() {
                   style={{
                     height: open ? "320px" : "0px",
                     transition: "height 0.3s ease",
-                    contentVisibility: open ? "visible" : "hidden"
+                    contentVisibility: open ? "visible" : "hidden",
+                    marginRight:"-10px",
+                    backgroundColor:"rgb(240, 242, 244)",
+                    boxShadow: "4px 4px 8px rgba(0, 0, 0, 0.2)"
                   }} 
                   className="profileDetails"
                 >

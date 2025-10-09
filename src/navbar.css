@@ -211,6 +211,8 @@
     }
     .profileDetails{
       width: 200px;
+      height:auto;
+      overflow:hidden;
       top: 52px;
      
       
