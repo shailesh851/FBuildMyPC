@@ -18,8 +18,9 @@ function Navbar() {
 
   function profileDetailsDiv() {
     setOpen(!open);
-  }
 
+  }
+  
   const openFilePicker = () => {
     fileInputRef.current.click();
   };
@@ -79,6 +80,9 @@ function Navbar() {
       .catch(() => console.error("error"));
 
   }
+  function sidebarToggel(){
+    setMenuOpen(false)
+  }
 
   return (
     <div className="navbar-div">
@@ -90,11 +94,11 @@ function Navbar() {
         {menuOpen?(
           <div className="toggle-sidebar">
             <ul>
-              <li ><Link to="/">PC Build</Link></li>
-              <li ><Link to="/Pre_Build_PC">Pre-Build PC</Link></li>
-              <li ><Link to="/PC_Components">PC Components</Link></li>
-              <li ><Link to="/Peripherals">PC Peripherals</Link></li>
-              <li ><Link to="/chatbot">AI Powered Bot</Link></li>
+              <li ><Link to="/" onClick={sidebarToggel} >PC Build</Link></li>
+              <li ><Link to="/Pre_Build_PC" onClick={sidebarToggel}>Pre-Build PC</Link></li>
+              <li ><Link to="/PC_Components" onClick={sidebarToggel} >PC Components</Link></li>
+              <li ><Link to="/Peripherals" onClick={sidebarToggel}>PC Peripherals</Link></li>
+              <li ><Link to="/chatbot" onClick={sidebarToggel}>AI Powered Bot</Link></li>
             </ul>
           </div>
         

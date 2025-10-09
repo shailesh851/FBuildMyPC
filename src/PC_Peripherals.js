@@ -18,7 +18,7 @@ const [loading, setLoading] = useState(true);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-  axios.get("https://bbuildmypc.onrender.com/products/")
+  axios.get("https://bbuildmypc.onrender.com/products/",{withCredentials:true})
     .then((response) => {
       const fetchedProducts = response.data;
       console.log("Fetched Products:", fetchedProducts); // ADD THIS
@@ -44,7 +44,7 @@ const [loading, setLoading] = useState(true);
                 type: product.type,
                 original_price: product.original_price,
                 discounted_price: product.discounted_price
-            })
+            },{withCredentials:true})
             .then(response => {
                 console.log("Saved to Django:", response.data);
             })

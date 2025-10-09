@@ -16,7 +16,7 @@ function PCbuild_Select() {
     const [loading, setLoading] = useState(true);
 
      useEffect(() => {
-        axios.get("https://bbuildmypc.onrender.com/products/")
+        axios.get("https://bbuildmypc.onrender.com/products/",{ withCredentials: true})
         .then((response) => {
         const filteredProducts = response.data.filter(
           (item) => item.type === category);
@@ -40,7 +40,7 @@ function PCbuild_Select() {
                 type: product.type,
                 original_price: product.original_price,
                 discounted_price: product.discounted_price
-            })
+            },{ withCredentials: true})
             .then(response => {
                 console.log("Saved to Django:", response.data);
             })

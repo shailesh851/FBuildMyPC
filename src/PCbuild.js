@@ -28,12 +28,18 @@ function PCbuild(){
 
 
     useEffect(() => {
-    axios.get("https://bbuildmypc.onrender.com/getSelectedproducts/")
+    axios.get("https://bbuildmypc.onrender.com/getSelectedproducts/",{ withCredentials: true})
         .then((response) => {
-            const productList = response.data;
-            setProducts(productList);
+            const productList = response.data.data;
+            const filtered=productList.filter((x)=>{
+                if(x.Email===response.data.user && x.ProductsPlace===response.data.loc){
+                    return true;
+                }
+            })
+            console.log(document.cookie)
+            setProducts(filtered);
 
-            const total = productList.reduce((sum, product) => {
+            const total = filtered.reduce((sum, product) => {
                 // Clean string if needed and parse safely
                 const price = parseFloat(String(product.original_price).replace(/[₹,]/g, '')) || 0;
                 return sum + price;
@@ -49,7 +55,7 @@ function PCbuild(){
 
     const handleRemove = (productType) => {
   axios
-    .delete("https://bbuildmypc.onrender.com/removeSelectedItem/",{data: { type: productType }})
+    .delete("https://bbuildmypc.onrender.com/removeSelectedItem/",{data: { type: productType }, withCredentials: true})
     .then((response) => {
       if (response.data) {
         setProducts(prev => prev.filter(p => p.type !== productType));
@@ -73,7 +79,7 @@ function PCbuild(){
   try {
     const res = await axios.post("https://bbuildmypc.onrender.com/addToCart/", {
       status_msg: action,
-    });
+    },{ withCredentials: true});
     setCartStatus(res.data);   // Show status message           // Show toast
 
     // Wait a bit before refreshing (optional: gives time to show toast)

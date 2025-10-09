@@ -17,7 +17,7 @@ function PC_Components() {
 const [loading, setLoading] = useState(true);
 
 useEffect(() => {
-  axios.get("https://bbuildmypc.onrender.com/products")
+  axios.get("https://bbuildmypc.onrender.com/products",{ withCredentials: true})
     .then((response) => {
       setProducts(response.data);
       setFilteredProducts(response.data);
@@ -44,7 +44,7 @@ useEffect(() => {
       type: product.type,
       original_price: product.original_price,
       discounted_price: product.discounted_price
-    })
+    },{ withCredentials: true})
     .then(response => {
       console.log("Saved to Django:", response.data);
     })

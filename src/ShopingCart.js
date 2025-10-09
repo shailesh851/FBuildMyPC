@@ -27,7 +27,7 @@ const ShoppingCart = () => {
 
   const fetchCartProducts = () => {
     axios
-      .get("https://bbuildmypc.onrender.com/getCartproducts/")
+      .get("https://bbuildmypc.onrender.com/getCartproducts/",{ withCredentials: true })
       .then((response) => {
         setProducts(response.data);
       })
@@ -38,7 +38,7 @@ const ShoppingCart = () => {
 
 const handleRemove = (productId) => {
   axios
-    .delete("https://bbuildmypc.onrender.com/removeCart", { data: { _id: productId } })
+    .delete("https://bbuildmypc.onrender.com/removeCart", { data: { _id: productId },withCredentials: true  })
     .then(() => {
       setProducts(products1.filter((product) => product._id !== productId));
     })
@@ -70,11 +70,11 @@ const handleRemove = (productId) => {
           navigate(res.data.redirect);
         }
         else{
-          if(res.data.message==="filled "){
+          if(res.data.login==="exist"){
             setOderAddress("Update")
             setOpen(false)
           }
-          else if(res.data.message==="notfilled"){
+          else if(res.data.login==="notexist"){
             setOderAddress("Save")
             setOpen(false)
           }
@@ -91,7 +91,6 @@ const handleRemove = (productId) => {
         .then(res=>{
             setAddress(res.data.message)
             if(res.data.message==="Address saved successfully!"){
-              setTimeout(() => window.location.reload(), 1000);
               setColor1("green")
               setOderAddress("Place Order")
               setOpen(true)
