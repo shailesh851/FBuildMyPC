@@ -27,7 +27,7 @@ function GeminiChat() {
     setInput('');
 
     try {
-      const response = await axios.post('https://bbuildmypc.onrender.com/chat', {
+      const response = await axios.post('http://localhost:4000/chat', {
         conversation: updatedMessages
       },{withCredentials:true});
 

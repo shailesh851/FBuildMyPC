@@ -84,6 +84,7 @@ function Navbar() {
     setMenuOpen(false)
   }
 
+
   return (
     <div className="navbar-div">
       <img src={LOGO} className="navbar-Logo" alt="BuildMyPC Logo" />

@@ -42,7 +42,7 @@ function PCbuild_Select() {
                 discounted_price: product.discounted_price
             },{ withCredentials: true})
             .then(response => {
-                console.log("Saved to Django:", response.data);
+                console.log("Saved :", response.data);
             })
             .catch(error => {
                 console.error("Failed to send data:", error);
