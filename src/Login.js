@@ -68,7 +68,7 @@ function LoginForm() {
 
     try {
       const res = await axios.post(
-        "http://localhost:4000/forgotdetails",
+        "https://bbuildmypc.onrender.com/forgotdetails",
         { user: formData.email },
         { withCredentials: true }
       );
@@ -100,7 +100,7 @@ function LoginForm() {
 
     try {
       const res = await axios.post(
-        "http://localhost:4000/passwordchange",
+        "https://bbuildmypc.onrender.com/passwordchange",
         {
           otp: formOtp,
           newPassword: formNewPassword,
