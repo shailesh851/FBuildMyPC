@@ -16,7 +16,7 @@ function PCbuild_Select() {
     const [loading, setLoading] = useState(true);
 
      useEffect(() => {
-        axios.get("http://localhost:4000/products/",{ withCredentials: true})
+        axios.get("https://bbuildmypc.onrender.com/products/",{ withCredentials: true})
         .then((response) => {
         const filteredProducts = response.data.filter(
           (item) => item.type === category);
@@ -33,7 +33,7 @@ function PCbuild_Select() {
 
         function handlePick(product) {
             navigate("/", { state: { url: product.image_url ,title:product.title,type:product.type,price:product.original_price } });
-            axios.post("http://localhost:4000/productSelected/", {
+            axios.post("https://bbuildmypc.onrender.com/productSelected/", {
                 title: product.title,
                 image_url: product.image_url,
                 brand:product.brand,

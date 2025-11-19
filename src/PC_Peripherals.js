@@ -18,7 +18,7 @@ const [loading, setLoading] = useState(true);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-  axios.get("http://localhost:4000/products/",{withCredentials:true})
+  axios.get("https://bbuildmypc.onrender.com/products/",{withCredentials:true})
     .then((response) => {
       const fetchedProducts = response.data;
       console.log("Fetched Products:", fetchedProducts); // ADD THIS
@@ -37,7 +37,7 @@ const [loading, setLoading] = useState(true);
 
       function handleCart(product) {
             navigate("/Shoping_cart", { state: { url: product.image_url ,title:product.title,type:product.type,price:product.original_price } });
-            axios.post("http://localhost:4000/addCart/", {
+            axios.post("https://bbuildmypc.onrender.com/addCart/", {
                 title: product.title,
                 image_url: product.image_url,
                 brand:product.brand,

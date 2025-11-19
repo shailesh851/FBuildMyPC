@@ -32,7 +32,7 @@ const handleFileChange = (e) => {
   const formData = new FormData();
   formData.append("profile", file);
 
-  axios.post("http://localhost:4000/profileImage", formData, {
+  axios.post("https://bbuildmypc.onrender.com/profileImage", formData, {
     withCredentials: true,
     headers: { "Content-Type": "multipart/form-data" }
   })
@@ -42,7 +42,7 @@ const handleFileChange = (e) => {
 
 
   useEffect(() => {
-    axios.get("http://localhost:4000/logincheckProfile",{ withCredentials: true })
+    axios.get("https://bbuildmypc.onrender.com/logincheckProfile",{ withCredentials: true })
       .then(res => {
         if (res.data.login === "exist") {
           setIsLoggedIn(true);   // ✅ if logged in
@@ -54,7 +54,7 @@ const handleFileChange = (e) => {
   }, []);
 
     useEffect(() => {
-    axios.get("http://localhost:4000/fatchProfileDetails",{ withCredentials: true })
+    axios.get("https://bbuildmypc.onrender.com/fatchProfileDetails",{ withCredentials: true })
       .then(res => {
         setProfileData({
         username: res.data.UserName,
@@ -72,11 +72,11 @@ const handleFileChange = (e) => {
 
 
   function logout(){
-    axios.post("http://localhost:4000/loginProductsManage",{},{ withCredentials: true })
+    axios.post("https://bbuildmypc.onrender.com/loginProductsManage",{},{ withCredentials: true })
     .then(res=>{console.log("done")})
     .catch(error=>{console.log(error)})
 
-    axios.get("http://localhost:4000/logout",{ withCredentials: true })
+    axios.get("https://bbuildmypc.onrender.com/logout",{ withCredentials: true })
       .then(res => {
         if(res.data.message==="Logout successful"){
           navigate("/")
@@ -159,7 +159,7 @@ const handleFileChange = (e) => {
                     />
 
                     <img
-                      src={`http://localhost:4000${profileData.url}` || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb2F1sRrmj0rFgZyVmC8yBgXxyccFRJf7LPQ&s"}
+                      src={`https://bbuildmypc.onrender.com${profileData.url}` || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb2F1sRrmj0rFgZyVmC8yBgXxyccFRJf7LPQ&s"}
                       alt="uploadimage"
                       onClick={openFilePicker}
                       style={{

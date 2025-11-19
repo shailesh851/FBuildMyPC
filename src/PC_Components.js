@@ -17,7 +17,7 @@ function PC_Components() {
 const [loading, setLoading] = useState(true);
 
 useEffect(() => {
-  axios.get("http://localhost:4000/products",{ withCredentials: true})
+  axios.get("https://bbuildmypc.onrender.com/products",{ withCredentials: true})
     .then((response) => {
       setProducts(response.data);
       setFilteredProducts(response.data);
@@ -37,7 +37,7 @@ useEffect(() => {
       price: product.original_price 
     }});
     
-    axios.post("http://localhost:4000/addCart/", {
+    axios.post("https://bbuildmypc.onrender.com/addCart/", {
       title: product.title,
       image_url: product.image_url,
       brand: product.brand,

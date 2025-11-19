@@ -24,7 +24,7 @@ function PCbuild(){
 
 
     useEffect(() => {
-    axios.get("http://localhost:4000/getSelectedproducts/",{ withCredentials: true})
+    axios.get("https://bbuildmypc.onrender.com/getSelectedproducts/",{ withCredentials: true})
         .then((response) => {
             const productList = response.data.data;
             const filtered=productList.filter((x)=>{
@@ -51,7 +51,7 @@ function PCbuild(){
 
     const handleRemove = (productType) => {
   axios
-    .delete("http://localhost:4000/removeSelectedItem/",{data: { type: productType }, withCredentials: true})
+    .delete("https://bbuildmypc.onrender.com/removeSelectedItem/",{data: { type: productType }, withCredentials: true})
     .then((response) => {
       if (response.data) {
         setProducts(prev => prev.filter(p => p.type !== productType));
@@ -73,7 +73,7 @@ function PCbuild(){
     
     const handleSend = async (action) => {
   try {
-    const res = await axios.post("http://localhost:4000/addToCart/", {
+    const res = await axios.post("https://bbuildmypc.onrender.com/addToCart/", {
       status_msg: action,
     },{ withCredentials: true});
     setCartStatus(res.data);   // Show status message           // Show toast
