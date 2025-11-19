@@ -106,7 +106,7 @@ const handleFileChange = (e) => {
         {menuOpen?(
           <div className="toggle-sidebar">
             <ul>
-              <li ><Link style={{ backgroundColor: activeLink === "/" ? "red" : "" }} to="/" onClick={sidebarToggel} >PC Build</Link></li>
+              <li ><Link to="/" onClick={sidebarToggel} >PC Build</Link></li>
               <li ><Link to="/Pre_Build_PC" onClick={sidebarToggel}>Pre-Build PC</Link></li>
               <li ><Link to="/PC_Components" onClick={sidebarToggel} >PC Components</Link></li>
               <li ><Link to="/Peripherals" onClick={sidebarToggel}>PC Peripherals</Link></li>
@@ -163,7 +163,10 @@ const handleFileChange = (e) => {
                     />
 
                     <img
-                      src={`https://bbuildmypc.onrender.com${profileData.url}` || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb2F1sRrmj0rFgZyVmC8yBgXxyccFRJf7LPQ&s"}
+                      src={profileData.url 
+      ? `https://bbuildmypc.onrender.com${profileData.url}` 
+      : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb2F1sRrmj0rFgZyVmC8yBgXxyccFRJf7LPQ&s"}
+
                       alt="uploadimage"
                       onClick={openFilePicker}
                       style={{

@@ -187,8 +187,14 @@ html, body {
 
       
   }
+
+  .add_to_cart:hover {
+  background-color: #6f6969;
+  color:#d7b717
+}
   .PC_Components_Select_items_inner p{
-   color: red; 
+   color: rgb(20, 75, 11); 
+
    font-size: 15px;
    margin-left: -10px;
    margin-right: 5px;
