@@ -212,9 +212,9 @@ function LoginForm() {
         {msg ? (
           <p>{msg}</p>
         ) : (
-          <p>
+          <h4>
             Don’t have an account? <a href="/signup">Sign Up</a>
-          </p>
+          </h4>
         )}
       </div>
     </div>
