@@ -19,7 +19,7 @@ const [loading, setLoading] = useState(true);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-  axios.get("https://bbuildmypc.onrender.com/products/",{withCredentials:true})
+  axios.get("http://localhost:4000/products/",{withCredentials:true})
     .then((response) => {
       const fetchedProducts = response.data;
       console.log("Fetched Products:", fetchedProducts); // ADD THIS
@@ -37,7 +37,7 @@ const [loading, setLoading] = useState(true);
 
       function handleCart(product) {
             navigate("/Shoping_cart", { state: { url: product.image_url ,title:product.title,type:product.type,price:product.original_price } });
-            axios.post("https://bbuildmypc.onrender.com/addCart/", {
+            axios.post("http://localhost:4000/addCart/", {
                 title: product.title,
                 image_url: product.image_url,
                 brand:product.brand,
@@ -46,7 +46,9 @@ const [loading, setLoading] = useState(true);
                 discounted_price: product.discounted_price
             },{withCredentials:true})
             .then(response => {
-                console.log("Saved to Django:", response.data);
+                if(response.data.status=="redirect"){
+                  navigate("/signup")
+                }
             })
             .catch(error => {
                 console.error("Failed to send data:", error);
@@ -113,7 +115,7 @@ const [loading, setLoading] = useState(true);
           {filteredProducts.filter(p => p.type === "Pre-Build PC" &&parseFloat(p.original_price.replace(/[^0-9.]/g, "")) <= parseFloat(maxPrice) && p.title.toLowerCase().includes(searchTerm.toLowerCase()) // 🔹 search filter
           ).map((product) => (
             <div key={product.id} className="PC_Components_Select_items">
-              <img className="PC_Components_Select_items_images" src={product.image_url} alt="" />
+              <img className="PC_Components_Select_items_images" src={product.image_url} alt="" width="200px" height="200px" />
               <p className="PC_Components_Select_items_title">{product.title}</p>
               <div className="PC_Components_Select_items_inner">
                 <p >{product.original_price}</p>

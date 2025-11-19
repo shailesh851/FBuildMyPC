@@ -30,7 +30,7 @@ function LoginForm() {
 
     try {
       const res = await axios.post(
-        "https://bbuildmypc.onrender.com/login",
+        "http://localhost:4000/login",
         formData,
         { withCredentials: true }
       );
@@ -38,7 +38,7 @@ function LoginForm() {
       setMsg(res.data.message);
 
       if (res.data.message === "Login successful") {
-        await axios.get("https://bbuildmypc.onrender.com/prepareHistory", {
+        await axios.get("http://localhost:4000/prepareHistory", {
           withCredentials: true,
         });
 
@@ -68,7 +68,7 @@ function LoginForm() {
 
     try {
       const res = await axios.post(
-        "https://bbuildmypc.onrender.com/forgotdetails",
+        "http://localhost:4000/forgotdetails",
         { user: formData.email },
         { withCredentials: true }
       );
@@ -100,7 +100,7 @@ function LoginForm() {
 
     try {
       const res = await axios.post(
-        "https://bbuildmypc.onrender.com/passwordchange",
+        "http://localhost:4000/passwordchange",
         {
           otp: formOtp,
           newPassword: formNewPassword,

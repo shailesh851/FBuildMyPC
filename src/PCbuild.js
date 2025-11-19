@@ -8,11 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 function PCbuild(){
 
-    //-------------
-  
-   
 
-  //-----------------
     
     const [cart_status, setCartStatus] = useState("");
 
@@ -28,7 +24,7 @@ function PCbuild(){
 
 
     useEffect(() => {
-    axios.get("https://bbuildmypc.onrender.com/getSelectedproducts/",{ withCredentials: true})
+    axios.get("http://localhost:4000/getSelectedproducts/",{ withCredentials: true})
         .then((response) => {
             const productList = response.data.data;
             const filtered=productList.filter((x)=>{
@@ -55,7 +51,7 @@ function PCbuild(){
 
     const handleRemove = (productType) => {
   axios
-    .delete("https://bbuildmypc.onrender.com/removeSelectedItem/",{data: { type: productType }, withCredentials: true})
+    .delete("http://localhost:4000/removeSelectedItem/",{data: { type: productType }, withCredentials: true})
     .then((response) => {
       if (response.data) {
         setProducts(prev => prev.filter(p => p.type !== productType));
@@ -77,7 +73,7 @@ function PCbuild(){
     
     const handleSend = async (action) => {
   try {
-    const res = await axios.post("https://bbuildmypc.onrender.com/addToCart/", {
+    const res = await axios.post("http://localhost:4000/addToCart/", {
       status_msg: action,
     },{ withCredentials: true});
     setCartStatus(res.data);   // Show status message           // Show toast
@@ -122,7 +118,7 @@ function PCbuild(){
                         <h4>Select Processor</h4>
                             {products.filter(p => p.type === "Processor").map((product, index) => (
                                 <div key={index} className="selected_product">
-                                    <img className="select_product_image" src={product.image_url} alt="img" />
+                                    <img className="select_product_image" src={product.image_url} alt="img" width="100px" height="100px"/>
                                     <p style={{ width: "500px" }}>{product.title}</p>
                                     <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}> {product.original_price}</p>
                                 </div>
@@ -130,7 +126,7 @@ function PCbuild(){
                             {Array.isArray(products) && products.filter(p => p.type === "Processor").length === 0 && (
                                 <p style={{ color: "gray" }}>No Processor selected yet</p>
                             )}
-                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/processor-caticon.svg" alt="processor_LOGO" />
+                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/processor-caticon.svg" alt="processor_LOGO" width="50px" height="50px"/>
                             <Link to="/click" state={{ category: "Processor" }}>
                                 <button className="content-button">Select</button>
                             </Link>
@@ -144,7 +140,7 @@ function PCbuild(){
                         <h4>Select Motherboard</h4>
                             {products.filter(p => p.type === "Motherboard").map((product, index) => (
                                 <div key={index} className="selected_product">
-                                    <img className="select_product_image" src={product.image_url} alt="img" />
+                                    <img className="select_product_image" src={product.image_url} alt="img" width="100px" height="100px"/>
                                     <p style={{ width: "500px" }}>{product.title}</p>
                                     <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
@@ -152,7 +148,7 @@ function PCbuild(){
                             {Array.isArray(products) && products.filter(p => p.type === "Motherboard").length === 0 && (
                                 <p style={{ color: "gray" }}>No Motherboard selected yet</p>
                             )}
-                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/motherboard-caticon.svg" alt="motherboard_LOGO" />
+                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/motherboard-caticon.svg" alt="motherboard_LOGO" width="50px" height="50px"/>
                             <Link to="/click" state={{ category: "Motherboard" }}>
                                 <button className="content-button">Select</button>
                             </Link>
@@ -165,7 +161,7 @@ function PCbuild(){
                         <h4>Select RAM</h4>
                             {products.filter(p => p.type === "MEMORY / RAM").map((product, index) => (
                                 <div key={index} className="selected_product">
-                                    <img className="select_product_image" src={product.image_url} alt="img" />
+                                    <img className="select_product_image" src={product.image_url} alt="img" width="100px" height="100px" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
                                     <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
@@ -173,7 +169,7 @@ function PCbuild(){
                             {Array.isArray(products) && products.filter(p => p.type === "MEMORY / RAM").length === 0 && (
                                 <p style={{ color: "gray" }}>No MEMORY / RAM selected yet</p>
                             )}
-                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/ram-caticon.svg" alt="MEMORY / RAM" />
+                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/ram-caticon.svg" alt="MEMORY / RAM" width="50px" height="50px"/>
                             <Link to="/click" state={{ category: "MEMORY / RAM" }}>
                                 <button className="content-button">Select</button>
                             </Link>
@@ -187,7 +183,7 @@ function PCbuild(){
                         <h4>Select storage 1</h4>
                             {products.filter(p => p.type === "SSD").map((product, index) => (
                                 <div key={index} className="selected_product">
-                                    <img className="select_product_image" src={product.image_url} alt="img" />
+                                    <img className="select_product_image" src={product.image_url} alt="img" width="100px" height="100px" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
                                     <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
@@ -195,7 +191,7 @@ function PCbuild(){
                             {Array.isArray(products) && products.filter(p => p.type === "SSD").length === 0 && (
                                 <p style={{ color: "gray" }}>No SSD selected yet</p>
                             )}
-                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/storage-caticon.svg" alt="SSD" />
+                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/storage-caticon.svg" alt="SSD" width="50px" height="50px"/>
                             <Link to="/click" state={{ category: "SSD" }}>
                                 <button className="content-button">Select</button>
                             </Link>
@@ -209,7 +205,7 @@ function PCbuild(){
                         <h4>Select storage 2</h4>
                             {products.filter(p => p.type === "SSD").map((product, index) => (
                                 <div key={index} className="selected_product">
-                                    <img className="select_product_image" src={product.image_url} alt="img" />
+                                    <img className="select_product_image" src={product.image_url} alt="img" width="100px" height="100px"/>
                                     <p style={{ width: "500px" }}>{product.title}</p>
                                     <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
@@ -217,7 +213,7 @@ function PCbuild(){
                             {Array.isArray(products) && products.filter(p => p.type === "SSD").length === 0 && (
                                 <p style={{ color: "gray" }}>No SSD selected yet</p>
                             )}
-                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/storage-caticon.svg" alt="SSD" />
+                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/storage-caticon.svg" alt="SSD" width="50px" height="50px"/>
                             <Link to="/click" state={{ category: "SSD" }}>
                                 <button className="content-button">Select</button>
                             </Link>
@@ -230,7 +226,7 @@ function PCbuild(){
                         <h4>Select cabinet</h4>
                             {products.filter(p => p.type === "PC Cabinets").map((product, index) => (
                                 <div key={index} className="selected_product">
-                                    <img className="select_product_image" src={product.image_url} alt="img" />
+                                    <img className="select_product_image" src={product.image_url} alt="img" width="100px" height="100px" />
                                     <p style={{ width: "500px" }}>{product.title}</p>
                                     <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}> {product.original_price}</p>
                                 </div>
@@ -238,7 +234,7 @@ function PCbuild(){
                             {Array.isArray(products) && products.filter(p => p.type === "PC Cabinets").length === 0 && (
                                 <p style={{ color: "gray" }}>No PC Cabinets selected yet</p>
                             )}
-                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/cabinets-caticon.svg" alt="PC Cabinets" />
+                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/cabinets-caticon.svg" alt="PC Cabinets" width="50px" height="50px"/>
                             <Link to="/click" state={{ category: "PC Cabinets" }}>
                                 <button className="content-button">Select</button>
                             </Link>
@@ -252,7 +248,7 @@ function PCbuild(){
                         <h4>Select Cabinet Fan</h4>
                             {products.filter(p => p.type === "Cabinet Fan").map((product, index) => (
                                 <div key={index} className="selected_product">
-                                    <img className="select_product_image" src={product.image_url} alt="img" />
+                                    <img className="select_product_image" src={product.image_url} alt="img" width="100px" height="100px"/>
                                     <p style={{ width: "500px" }}>{product.title}</p>
                                     <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
@@ -260,7 +256,7 @@ function PCbuild(){
                             {Array.isArray(products) && products.filter(p => p.type === "Cabinet Fan").length === 0 && (
                                 <p style={{ color: "gray" }}>No Cabinet Fan selected yet</p>
                             )}
-                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/cabinetfan-caticon.svg" alt="Cabinet Fan" />
+                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/cabinetfan-caticon.svg" alt="Cabinet Fan" width="50px" height="50px"/>
                             <Link to="/click" state={{ category: "Cabinet Fan" }}>
                                 <button className="content-button">Select</button>
                             </Link>
@@ -275,7 +271,7 @@ function PCbuild(){
                         <h4>Select Cooler</h4>
                             {products.filter(p => p.type === "CPU Cooler").map((product, index) => (
                                 <div key={index} className="selected_product">
-                                    <img className="select_product_image" src={product.image_url} alt="img" />
+                                    <img className="select_product_image" src={product.image_url} alt="img" width="100px" height="100px"/>
                                     <p style={{ width: "500px" }}>{product.title}</p>
                                     <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}> {product.original_price}</p>
                                 </div>
@@ -283,7 +279,7 @@ function PCbuild(){
                             {Array.isArray(products) && products.filter(p => p.type === "CPU Cooler").length === 0 && (
                                 <p style={{ color: "gray" }}>No CPU Cooler selected yet</p>
                             )}
-                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/cooler-caticon.svg" alt="CPU Cooler" />
+                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/cooler-caticon.svg" alt="CPU Cooler" width="50px" height="50px"/>
                             <Link to="/click" state={{ category: "CPU Cooler" }}>
                                 <button className="content-button">Select</button>
                             </Link>
@@ -298,7 +294,7 @@ function PCbuild(){
                         <h4>Select Graphics Card</h4>
                             {products.filter(p => p.type === "Graphics Card").map((product, index) => (
                                 <div key={index} className="selected_product">
-                                    <img className="select_product_image" src={product.image_url} alt="img" />
+                                    <img className="select_product_image" src={product.image_url} alt="img" width="100px" height="100px"/>
                                     <p style={{ width: "500px" }}>{product.title}</p>
                                     <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}> {product.original_price}</p>
                                 </div>
@@ -306,7 +302,7 @@ function PCbuild(){
                             {Array.isArray(products) && products.filter(p => p.type === "Graphics Card").length === 0 && (
                                 <p style={{ color: "gray" }}>No Graphics Card selected yet</p>
                             )}
-                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/graphiccard-caticon.svg" alt="Graphics Card" />
+                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/graphiccard-caticon.svg" alt="Graphics Card" width="50px" height="50px"/>
                             <Link to="/click" state={{ category: "Graphics Card" }}>
                                 <button className="content-button">Select</button>
                             </Link>
@@ -320,7 +316,7 @@ function PCbuild(){
                         <h4>Select Power Supply Unit</h4>
                             {products.filter(p => p.type === "Power Supply").map((product, index) => (
                                 <div key={index} className="selected_product">
-                                    <img className="select_product_image" src={product.image_url} alt="img" />
+                                    <img className="select_product_image" src={product.image_url} alt="img" width="100px" height="100px"/>
                                     <p style={{ width: "500px" }}>{product.title}</p>
                                     <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
@@ -328,7 +324,7 @@ function PCbuild(){
                             {Array.isArray(products) && products.filter(p => p.type === "Power Supply").length === 0 && (
                                 <p style={{ color: "gray" }}>No Power Supply selected yet</p>
                             )}
-                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/powersupply-caticon.svg" alt="Power Supply" />
+                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/powersupply-caticon.svg" alt="Power Supply" width="50px" height="50px"/>
                             <Link to="/click" state={{ category: "Power Supply" }}>
                                 <button className="content-button">Select</button>
                             </Link>
@@ -341,7 +337,7 @@ function PCbuild(){
                         <h4>Select Monitor</h4>
                             {products.filter(p => p.type === "Monitor").map((product, index) => (
                                 <div key={index} className="selected_product">
-                                    <img className="select_product_image" src={product.image_url} alt="img" />
+                                    <img className="select_product_image" src={product.image_url} alt="img" width="100px" height="100px"/>
                                     <p style={{ width: "500px" }}>{product.title}</p>
                                     <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
@@ -349,7 +345,7 @@ function PCbuild(){
                             {Array.isArray(products) && products.filter(p => p.type === "Monitor").length === 0 && (
                                 <p style={{ color: "gray" }}>No Monitor selected yet</p>
                             )}
-                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/monitor-caticon.svg" alt="Monitor" />
+                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/monitor-caticon.svg" alt="Monitor" width="50px" height="50px" />
                             <Link to="/click" state={{ category: "Monitor" }}>
                                 <button className="content-button">Select</button>
                             </Link>
@@ -363,7 +359,7 @@ function PCbuild(){
                         <h4>Select Keyboard</h4>
                             {products.filter(p => p.type === "Keyboard").map((product, index) => (
                                 <div key={index} className="selected_product">
-                                    <img className="select_product_image" src={product.image_url} alt="img" />
+                                    <img className="select_product_image" src={product.image_url} alt="img" width="100px" height="100px"/>
                                     <p style={{ width: "500px" }}>{product.title}</p>
                                     <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
@@ -371,7 +367,7 @@ function PCbuild(){
                             {Array.isArray(products) && products.filter(p => p.type === "Keyboard").length === 0 && (
                                 <p style={{ color: "gray" }}>No Keyboard selected yet</p>
                             )}
-                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/keyboard-caticon.svg" alt="Keyboard" />
+                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/keyboard-caticon.svg" alt="Keyboard" width="50px" height="50px" />
                             <Link to="/click" state={{ category: "Keyboard" }}>
                                 <button className="content-button">Select</button>
                             </Link>
@@ -385,7 +381,7 @@ function PCbuild(){
                         <h4>Select Mouse</h4>
                             {products.filter(p => p.type === "Mouse").map((product, index) => (
                                 <div key={index} className="selected_product">
-                                    <img className="select_product_image" src={product.image_url} alt="img" />
+                                    <img className="select_product_image" src={product.image_url} alt="img" width="100px" height="100px"/>
                                     <p style={{ width: "500px" }}>{product.title}</p>
                                     <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
@@ -393,7 +389,7 @@ function PCbuild(){
                             {Array.isArray(products) && products.filter(p => p.type === "Mouse").length === 0 && (
                                 <p style={{ color: "gray" }}>No Mouse selected yet</p>
                             )}
-                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/mouse-caticon.svg" alt="Mouse" />
+                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/mouse-caticon.svg" alt="Mouse"  width="50px" height="50px"/>
                             <Link to="/click" state={{ category: "Mouse" }}>
                                 <button className="content-button">Select</button>
                             </Link>
@@ -407,7 +403,7 @@ function PCbuild(){
                         <h4>Select Accessories</h4>
                             {products.filter(p => p.type === "Accessories").map((product, index) => (
                                 <div key={index} className="selected_product">
-                                    <img className="select_product_image" src={product.image_url} alt="img" />
+                                    <img className="select_product_image" src={product.image_url} alt="img" width="100px" height="100px"/>
                                     <p style={{ width: "500px" }}>{product.title}</p>
                                     <p className="selectedProductsPrice" style={{ color: "orange", fontSize: "20px", fontWeight: "bold" }}>{product.original_price}</p>
                                 </div>
@@ -415,7 +411,7 @@ function PCbuild(){
                             {Array.isArray(products) && products.filter(p => p.type === "Accessories").length === 0 && (
                                 <p style={{ color: "gray" }}>No Accessories selected yet</p>
                             )}
-                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/gaminglaptop-caticon.svg" alt="Accessories" />
+                            <img className="content-image" src="https://www.pcstudio.in/wp-content/uploads/2021/04/gaminglaptop-caticon.svg" alt="Accessories" width="50px" height="50px" />
                             <Link to="/click" state={{ category: "Accessories" }}>
                                 <button className="content-button">Select</button>
                             </Link>
@@ -427,7 +423,7 @@ function PCbuild(){
             </div>
         </div>
         <div className="PCbuild-footer">
-            <img className="Footer_image" src={FooterImage} alt="FOOTER"></img>
+            <img className="Footer_image" src={FooterImage} alt="FOOTER" width="100%" height="200px"/>
         </div>
         <div>
         </div>

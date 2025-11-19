@@ -51,10 +51,11 @@
 
 /* Optional: Animated underline effect */
 .main-route ul li a::after {
+
   content: "";
   position: absolute;
   width: 0%;
-  height: 2px;
+  height: 4px;
   background-color: #60a5fa;
   left: 0;
   bottom: 0;
@@ -67,7 +68,10 @@
 
 .main-route ul li a:focus{
 
-  color: #4c4303;
+  color: #ffbb55;
+
+  background-color: #000000;
+  font-weight: 600;
 
 }
 

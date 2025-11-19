@@ -37,16 +37,17 @@ html, body {
   align-items: center;
   padding: 16px;
   transition: transform 0.2s;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+
 
 }
 
 .PC_Components_Select_items:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
 }
 
 .PC_Components_Select_items_images {
-  width: 200px;
-  height: 200px;
+
   object-fit: contain;
   margin-bottom: 12px;
 }
@@ -76,7 +77,7 @@ html, body {
 }
 
 .add_to_cart {
-  background-color: #d7b717;
+  background-color: #e2bb2e;
   color: rgb(2, 2, 2);
   padding: 6px 12px;
   border: none;
@@ -115,6 +116,8 @@ html, body {
     position: fixed;
     left:30px;
     top: 220px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+
 }
 
 .Filtering label {
@@ -161,7 +164,7 @@ html, body {
 }
 
 .PC_Components_Select_items_inner p{
-   color: red; 
+   color: rgb(20, 75, 11); 
    font-size: 20px;
 }
 

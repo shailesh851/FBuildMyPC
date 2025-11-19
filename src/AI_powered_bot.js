@@ -9,7 +9,7 @@ function GeminiChat() {
 
   // Load chat history from backend
   useEffect(() => {
-    axios.get("https://bbuildmypc.onrender.com/chathistory",{withCredentials:true})
+    axios.get("http://localhost:4000/chathistory",{withCredentials:true})
       .then(res => setMessages(res.data))
       .catch(err => console.error('Failed to load history', err));
   }, []);
@@ -27,7 +27,7 @@ function GeminiChat() {
     setInput('');
 
     try {
-      const response = await axios.post('https://bbuildmypc.onrender.com/chat', {
+      const response = await axios.post('http://localhost:4000/chat', {
         conversation: updatedMessages
       },{withCredentials:true});
 

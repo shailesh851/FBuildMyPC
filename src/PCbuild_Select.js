@@ -16,7 +16,7 @@ function PCbuild_Select() {
     const [loading, setLoading] = useState(true);
 
      useEffect(() => {
-        axios.get("https://bbuildmypc.onrender.com/products/",{ withCredentials: true})
+        axios.get("http://localhost:4000/products/",{ withCredentials: true})
         .then((response) => {
         const filteredProducts = response.data.filter(
           (item) => item.type === category);
@@ -33,7 +33,7 @@ function PCbuild_Select() {
 
         function handlePick(product) {
             navigate("/", { state: { url: product.image_url ,title:product.title,type:product.type,price:product.original_price } });
-            axios.post("https://bbuildmypc.onrender.com/productSelected/", {
+            axios.post("http://localhost:4000/productSelected/", {
                 title: product.title,
                 image_url: product.image_url,
                 brand:product.brand,
@@ -42,6 +42,9 @@ function PCbuild_Select() {
                 discounted_price: product.discounted_price
             },{ withCredentials: true})
             .then(response => {
+              if(response.data.status=="redirect"){
+                navigate("/signup")
+              }
                 console.log("Saved :", response.data);
             })
             .catch(error => {
@@ -81,7 +84,7 @@ function PCbuild_Select() {
                             {products.filter((p) => p.title.toLowerCase().includes(searchTerm.toLowerCase())).map((product) => (
                                 <>
                                 <div className="PCbuild_Select_items">
-                                    <img className="PCbuild_Select_items_images" src={product.image_url} alt=""/>
+                                    <img width="80" height="80" className="PCbuild_Select_items_images" src={product.image_url} alt=""/>
                                     <p className="PCbuild_Select_items_title">{product.title}</p>
                                     <div className="PCbuild_Select_items_inner" >
                                         <p>{product.original_price}</p>

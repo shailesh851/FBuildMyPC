@@ -17,7 +17,7 @@ function PC_Components() {
 const [loading, setLoading] = useState(true);
 
 useEffect(() => {
-  axios.get("https://bbuildmypc.onrender.com/products",{ withCredentials: true})
+  axios.get("http://localhost:4000/products",{ withCredentials: true})
     .then((response) => {
       setProducts(response.data);
       setFilteredProducts(response.data);
@@ -37,7 +37,7 @@ useEffect(() => {
       price: product.original_price 
     }});
     
-    axios.post("https://bbuildmypc.onrender.com/addCart/", {
+    axios.post("http://localhost:4000/addCart/", {
       title: product.title,
       image_url: product.image_url,
       brand: product.brand,
@@ -46,7 +46,9 @@ useEffect(() => {
       discounted_price: product.discounted_price
     },{ withCredentials: true})
     .then(response => {
-      console.log("Saved to Django:", response.data);
+        if(response.data.status=="redirect"){
+          navigate("/signup")
+        }
     })
     .catch(error => {
       console.error("Failed to send data:", error);
@@ -135,6 +137,7 @@ useEffect(() => {
         className="PC_Components_Select_items_images"
         src={product.image_url}
         alt={product.title}
+        width="200px" height="200px"
       />
       <p className="PC_Components_Select_items_title">{product.title}</p>
       <div className="PC_Components_Select_items_inner">
